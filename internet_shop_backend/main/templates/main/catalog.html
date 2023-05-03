@@ -1,0 +1,202 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load humanize %} <!-- {# для отображения цены красиво (10 000)#} -->
+
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'main/css/card_preview.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/catalog.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="wrapper">
+        <div class="container">
+            <div class="title">
+                <h1 class="title">Каталог</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="container">
+            <div class="card__holder">
+                {% for product in products_list %}
+                    <div class="card__preview">
+                        <div class="card__top">
+                            <a href="{% url 'card-detail' product.id %}" class="card__image">
+                              <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'uploads/default_image_2.png' %}{% endif %}" alt="{{ product.title }}"/>
+                            </a>
+                        </div>
+                        <div class="card__bottom">
+                            <div class="card__prices">
+                              <div class="card__price">{{ product.price|intcomma }}</div>
+                            </div>
+                            <a href="{% url 'card-detail' product.id %}" class="card__title">{{ product.title }}</a>
+                            <button class="card__add">В корзину</button>
+                        </div>
+                    </div>
+                {% empty %}
+                <h3>Произошла ошибка, каталог не загрузился, пожалуйста, подождите какое-то время</h3>
+                {% endfor %}
+            </div>
+            {% if paginator.num_pages > 1 %}
+                Всего страниц: {{ paginator.num_pages }} &lt; &gt;
+            {% endif %}
+            <hr>
+            <div class="pagination">
+                <ul>
+                    {% if paginator.num_pages > 1 %}
+                        {% if page_obj.has_previous %}
+                            <li><a href="?page={{ page_obj.previous_page_number }}">&larr;</a></li>
+                        {% endif %}
+                        {% for page in paginator.page_range %}
+                            {% if page_obj.number == page %}
+                                {{ page }}
+                            {% elif page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
+                                <li><a href="?page={{ page }}">{{ page }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                            <li><a href="?page={{ page_obj.next_page_number }}">&rarr;</a></li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#{% load static %}#}
+{#<!doctype html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta http-equiv="X-UA-Compatible" content="IE=edge">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+{#    <title>Каталог японской косметики FlawlessSkin</title>#}
+{#	<!-- Подключаем стили -->#}
+{#    <!--	<link rel="stylesheet" href="{% static 'main/css/main.css' %}">-->#}
+{#    <link rel="stylesheet" href="{% static 'main/css/base.css' %}">#}
+{#	<link rel="stylesheet" href="{% static 'main/css/card_preview.css' %}">#}
+{#    <link rel="stylesheet" href="{% static 'main/css/catalog.css' %}">#}
+{#	<!-- Подключаем шрифт -->#}
+{#	<link rel="preconnect" href="https://fonts.googleapis.com">#}
+{#	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>#}
+{#	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;500;700;900&display=swap" rel="stylesheet">#}
+{#</head>#}
+{#<body>#}
+{#    {% include 'main/del_header.html' %}#}
+{#    <div class="wrapper">#}
+{#        <div class="container">#}
+{#            <div class="title">#}
+{#                <h1 class="title">Каталог</h1>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="cards">#}
+{#        <div class="container">#}
+{#            <div class="card__holder">#}
+{#                {% for product in products_list %}#}
+{#                    <div class="card__preview">#}
+{#                        <div class="card__top">#}
+{#                            <a href="{% url 'card-detail' product.id %}" class="card__image">#}
+{#                              <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'uploads/default_image_2.png' %}{% endif %}" alt="{{ product.title }}"/>#}
+{#                            </a>#}
+{#                        </div>#}
+{#                        <div class="card__bottom">#}
+{#                            <div class="card__prices">#}
+{#                              <div class="card__price">{{ product.price }}</div>#}
+{#                            </div>#}
+{#                            <a href="{% url 'card-detail' product.id %}" class="card__title">{{ product.title }}</a>#}
+{#                            <button class="card__add">В корзину</button>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                {% empty %}#}
+{#                <h3>Произошла ошибка, каталог не загрузился, пожалуйста, подождите какое-то время</h3>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            {% if paginator.num_pages > 1 %}#}
+{#                Всего страниц: {{ paginator.num_pages }} &lt; &gt;#}
+{#            {% endif %}#}
+{#            <hr>#}
+{#            <div class="pagination">#}
+{#                <ul>#}
+{#                    {% if paginator.num_pages > 1 %}#}
+{#                        {% if page_obj.has_previous %}#}
+{#                            <li><a href="?page={{ page_obj.previous_page_number }}">&larr;</a></li>#}
+{#                        {% endif %}#}
+{#                        {% for page in paginator.page_range %}#}
+{#                            {% if page_obj.number == page %}#}
+{#                                {{ page }}#}
+{#                            {% elif page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}#}
+{#                                <li><a href="?page={{ page }}">{{ page }}</a></li>#}
+{#                            {% endif %}#}
+{#                        {% endfor %}#}
+{#                        {% if page_obj.has_next %}#}
+{#                            <li><a href="?page={{ page_obj.next_page_number }}">&rarr;</a></li>#}
+{#                        {% endif %}#}
+{#                    {% endif %}#}
+{#                </ul>#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <footer class="bg-dark text-white py-3">#}
+{#      <div class="container container2">#}
+{#        <div class="row">#}
+{#            <div class="col-md-4">#}
+{#                <h4>Ссылки</h4>#}
+{#                <ul class="list-unstyled links">#}
+{#                    <li><a href="#" class="link">Главная</a></li>#}
+{#                    <li><a href="#" class="link">Каталог товаров</a></li>#}
+{#                    <li><a href="#" class="link">О нас</a></li>#}
+{#                    <li><a href="#" class="link">Контакты</a></li>#}
+{#                </ul>#}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#                <h4>Контакты</h4>#}
+{#                <ul class="list-unstyled">#}
+{#                    <li>Телефон: +7 123 456-78-90</li>#}
+{#                    <li>Email: info@mycosmetics.com</li>#}
+{#                    <li>Адрес: г. Москва, ул. Косметическая, д. 10</li>#}
+{#                </ul>#}
+{#            </div>#}
+{#            <div class="col-md-4">#}
+{#                <h5>Подписка на рассылку</h5>#}
+{#                <p>Подпишитесь на нашу рассылку и получайте уведомления о новинках, распродажах и акциях</p>#}
+{#                <form>#}
+{#                    <div class="form-group">#}
+{#                        <input type="email" class="form-control" placeholder="Введите email">#}
+{#                    </div>#}
+{#                    <button type="submit" class="btn btn-primary">Подписаться</button>#}
+{#                </form>#}
+{#            </div>#}
+{#        </div>#}
+{#      </div>#}
+{#      <div class="bg-secondary text-center py-2">#}
+{#        <p>© 2023 MyCosmetics. Все права защищены.</p>#}
+{#      </div>#}
+{#    </footer>#}
+{##}
+{#</body>#}
+{#</html>#}

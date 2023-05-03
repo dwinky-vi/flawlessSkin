@@ -1,0 +1,152 @@
+/** {*/
+/*	margin: 0;*/
+/*    padding: 0;*/
+/*	font-family: 'M PLUS Rounded 1c', sans-serif;*/
+/*}*/
+
+/*.container {*/
+/*	width: 100%;*/
+/*	max-width: 1200px;*/
+/*	margin: 0 auto;*/
+/*	!*background-color: rgba(0, 0, 0, 0);*!*/
+/*}*/
+
+/*.header {*/
+/*	margin-bottom: 20px;*/
+/*}*/
+
+/*.title {*/
+/*	width: 100%;*/
+/*	margin-bottom: 30px;*/
+/*}*/
+
+/*.title__inner {*/
+/*	width: 100%;*/
+/*	text-align: center;*/
+/*}*/
+
+/*.first__block {*/
+/*	width: 100%;*/
+/*}*/
+
+
+
+/*.img {*/
+/*	border: 2px solid darkturquoise;*/
+/*	!*display: block;*!*/
+/*	height: 540px;*/
+/*	width: 300px;*/
+/*	object-fit: contain; !* Встраиваем картинку в контейнер card__image *!*/
+/*	transition: 0.2s;*/
+/*}*/
+
+/*.card__text {*/
+/*	border: 2px solid violet;*/
+/*	width: 100%;*/
+/*	max-width: 500px;*/
+/*	display: flex;*/
+/*	flex-direction: column;*/
+/*	!*align-items: flex-start;*!*/
+/*}*/
+
+/*.card__title {*/
+/*	font-size: 21px;*/
+/*	text-align: center;*/
+/*	margin-bottom: 40px;*/
+/*}*/
+
+
+/*.item {*/
+/*	!*display: inline;*!*/
+/*	color: #4d3a2e;*/
+/*	max-width: 100px;*/
+/*	width: 100%;*/
+/*	background: #FFB085;*/
+/*}*/
+
+.row {
+  display: flex;
+  /*flex-wrap: wrap;*/
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.product-details {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+/*dl {*/
+/*  display: table;*/
+/*  width: 100%;*/
+/*  !* добавляем пространство между строками *!*/
+/*  border-spacing: 0.5em 1em;*/
+/*}*/
+
+
+.product-details dt {
+  width: 200px;
+  float: left;
+  clear: left;
+  text-align: left;
+  font-weight: bold;
+}
+
+.product-details dd {
+  margin-left: 0;
+  margin-bottom: 10px;
+  margin-right: 0;
+  padding-left: 220px;
+  text-align: left;
+}
+
+.product-details:after {
+  content: "";
+  display: block;
+  clear: both;
+}
