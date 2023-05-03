@@ -60,42 +60,6 @@ body {
 	height: 630px;
 }
 
-			/* footer */
-.footer {
-	border-top: 1px solid grey;
-	margin-bottom: 0px;
-	width: 100%;
-	height: 60px;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	/* background-color: #e5e5e5; */
-	background-color: #FFB085;
-	/* border: 5px solid red; */
-}
-
-.footer__ul {
-	/* border: 3px solid blue; */
-	margin-left: 10%; /*??*/
-	margin-right: 5%;
-
-	width: 40%;
-	list-style-type: none;
-	display: flex;
-	justify-content: space-between;
-}
-
-.footer__link {
-	text-decoration: none;
-	font-weight: 300;
-	font-size: 16px;
-	line-height: 20px;
-	color: #000000;
-}
-
-.footer__link:hover {
-	text-decoration: underline;
-}
 
 
 
