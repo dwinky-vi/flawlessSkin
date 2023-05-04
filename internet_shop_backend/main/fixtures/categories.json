@@ -1,0 +1,1 @@
+[{"model": "main.productcategory", "pk": 1, "fields": {"name": "Без категории", "description": "Пустая категория для отладки системы"}}, {"model": "main.productcategory", "pk": 2, "fields": {"name": "Уход для лица", "description": ""}}]

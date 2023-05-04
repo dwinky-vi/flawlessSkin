@@ -16,7 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
+from django.conf import settings  # по сути тут мы импортируем наш файл settings, но там не все настройки, поэтому импортируем глобальный settings
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -28,5 +28,5 @@ urlpatterns = [
 
 # включаем возможность обработки картинок
 # без неё не работало
-if settings.DEBUG:
+if settings.DEBUG == True:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

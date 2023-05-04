@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product
+from .models import ProductCategory, Product
 from django.views.generic import ListView
 from django.views.generic import DetailView
 
@@ -10,9 +10,11 @@ def index(request):
 	request.session['foo'] = 'bar'
 	model = Product
 	products = Product.objects.all()
+	categories = ProductCategory.objects.all()
 	# context == content == data
 	context = {
 		"products": products,
+		"categories": categories,
 	}
 	return render(request, 'main/index.html', context)
 
