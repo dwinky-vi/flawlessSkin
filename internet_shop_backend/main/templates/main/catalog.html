@@ -24,7 +24,7 @@
                 {% for product in products_list %}
                     <div class="card__preview">
                         <div class="card__top">
-                            <a href="{% url 'card-detail' product.id %}" class="card__image">
+                            <a href="{% url 'products:card-detail' product.id %}" class="card__image">
                               <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'uploads/default_image_2.png' %}{% endif %}" alt="{{ product.title }}"/>
                             </a>
                         </div>
@@ -32,7 +32,7 @@
                             <div class="card__prices">
                               <div class="card__price">{{ product.price|intcomma }}</div>
                             </div>
-                            <a href="{% url 'card-detail' product.id %}" class="card__title">{{ product.title }}</a>
+                            <a href="{% url 'products:card-detail' product.id %}" class="card__title">{{ product.title }}</a>
                             <button class="card__add">В корзину</button>
                         </div>
                     </div>

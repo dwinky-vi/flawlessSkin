@@ -33,7 +33,7 @@ class CardsListView(ListView):
 	model = Product
 	template_name = "main/catalog.html"
 	context_object_name = "products_list"
-	# кол-во карточек на одной стронице
+	# кол-во карточек на одной странице
 	paginate_by = 4
 	
 	def get_queryset(self):
