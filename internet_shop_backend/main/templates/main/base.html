@@ -30,7 +30,7 @@
                     <a class="nav__link " href="{% url 'products:catalog' %}">Каталог</a>
                     <a class="nav__link " href="#">Избранное</a>
                     <a class="nav__link " href="{% url 'products:cart' %}">Корзина</a>
-                    <a class="nav__link " href="#">Войти</a>
+                    <a class="nav__link " href="{% url 'users:login' %}">Войти</a>
                 </nav>
                 <div class="burger__menu ">
                     <button id="burger__btn">
@@ -41,7 +41,7 @@
                         <a class="nav__link block " href="{% url 'products:catalog' %}">Каталог</a>
                         <a class="nav__link block " href="#">Избранное</a>
                         <a class="nav__link block " href="{% url 'products:cart' %}">Корзина</a>
-                        <a class="nav__link block " href="#">Войти</a>
+                        <a class="nav__link block " href="{% url 'users:login' %}">Войти</a>
                     </div>
                 </div>
             </div>

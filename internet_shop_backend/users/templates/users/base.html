@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <!-- Подключаем стили -->
+	<link rel="stylesheet" href="{% static 'users/css/base.css' %}">
+
+    <!-- Подключаем основной шрифт -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<script src="https://kit.fontawesome.com/3ad19d4a15.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div>
+		<form class="log__in__form">
+			<h1 class="title">Войти в аккаунт</h1>
+			<div class="email__box">
+				<input type="text" id="email__input" placeholder="Введите почту ">
+				<img id="email__arrow__img" src="{% static 'users/img/circled_right_50.png' %}" hidden>
+			</div>
+			<div  class="password__box" hidden>
+				<input type="text" id="password__input" placeholder="Введите пароль" >
+				<img id="password__arrow__img" src="{% static 'users/img/circled_right_50.png' %}" hidden>
+			</div>
+			<!-- <button type="button" class="btn">кнопка</button> -->
+			<a href="#" class="forgot__password">Забыли пароль?</a>
+			<a href="#" class="registration">Регистрация</a>
+		</form>
+	</div>
+	<script>
+        let emailInput = document.getElementById("email__input");
+        let passwordInput = document.getElementById("password__input")
+        let passwordBox = document.querySelector(".password__box");
+        let btnSentEmail = document.getElementById("email__arrow__img");
+        let btnSentPassword = document.getElementById("password__arrow__img")
+
+        emailInput.addEventListener("click", function() {
+            // подумать как чтобы стрелка появлялась только после ввода символа и чтобы гне надо было выпускать фокус для этого
+            btnSentEmail.hidden = false;
+        })
+        btnSentEmail.addEventListener("click", function() {
+            // value.innerHTML = "<h1>asdasdad</h1>";
+            if(emailInput.value.length > 0) {
+                passwordBox.hidden = false;
+            }
+        })
+        passwordInput.addEventListener("click", function() {
+            btnSentPassword.hidden = false;
+        })
+    </script>
+</body>
+</html>
+

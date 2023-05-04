@@ -15,6 +15,7 @@
     <option name="TEMPLATE_FOLDERS">
       <list>
         <option value="$MODULE_DIR$/internet_shop_backend/main/templates" />
+        <option value="$MODULE_DIR$/internet_shop_backend/users/templates" />
       </list>
     </option>
   </component>

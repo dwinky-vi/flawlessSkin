@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
+    path('users/', include('users.urls', namespace='users')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # это больше для выгрузки на сервер
 
