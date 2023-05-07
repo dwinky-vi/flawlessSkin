@@ -10,7 +10,7 @@
 
 
 {% block content %}
-    <div class="wrapper">
+    <div class="title__wrapper">
         <div class="container">
             <div class="title">
                 <h1 class="title">Каталог</h1>
@@ -52,7 +52,8 @@
                         {% endif %}
                         {% for page in paginator.page_range %}
                             {% if page_obj.number == page %}
-                                {{ page }}
+{#                                {{ page }}#}
+                                <li class="disabled">{{ page }}</li>
                             {% elif page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
                                 <li><a href="?page={{ page }}">{{ page }}</a></li>
                             {% endif %}

@@ -1,0 +1,63 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Войти</title>
+
+    <!-- Подключаем стили -->
+    <link rel="stylesheet" href="{% static 'users/css/login.css' %}">
+
+    <!-- Подключаем шрифт -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div>
+        {% if messages or form.non_field_errors %}
+            <div class="notification
+                    {% if messages %}
+                        notification-success
+                    {% else %}
+                        notification-alert
+                    {% endif %}"
+                >
+                <p>
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% else %}
+                    <div style="list-style-type: none">
+                        <strong>Внимание!</strong>
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+                </p>
+                <button class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+            </div>
+        {% endif %}
+
+        <div class="form__container">
+            <form id="login__form" action="{% url 'users:login' %}" method="post">
+                {% csrf_token %}
+                <div class="input__wrapper">
+                    <h1 class="title">Войти в аккаунт</h1>
+                    <label for="{{ form.username.id_for_label }}">Email:</label>
+                    {{ form.username }}
+
+                    <label for="{{ form.password.id_for_label }}">Пароль:</label>
+                    {{ form.password }}
+
+                    <button type="submit">Войти</button>
+                </div>
+            </form>
+        </div>
+	</div>
+</body>
+</html>

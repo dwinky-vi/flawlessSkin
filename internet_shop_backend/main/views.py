@@ -8,26 +8,20 @@ from django.views.generic import DetailView
 
 def index(request):
 	request.session['foo'] = 'bar'
-	model = Product
+	# model = Product
 	products = Product.objects.all()
+	products_sort = Product.objects.order_by('-date')[:8]
 	categories = ProductCategory.objects.all()
 	# context == content == data
 	context = {
-		"products": products,
+		"products": products_sort,
 		"categories": categories,
 	}
 	return render(request, 'main/index.html', context)
 
+	# Корзина
 def cart(request):
-    return render(request, "main/cart.html")
-
-# def catalog(request):
-# 	# получаем полностью все объекты
-# 	products = Product.objects.all()
-# 	data = {
-# 		"products": products,
-# 	}
-# 	return render(request, 'main/catalog.html', data)
+	return render(request, "main/cart.html")
 
 class CardsListView(ListView):
 	model = Product

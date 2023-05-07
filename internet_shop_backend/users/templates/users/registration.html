@@ -1,0 +1,117 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Регистрация</title>
+
+    <!-- Подключаем стили -->
+    <link rel="stylesheet" href="{% static 'users/css/registration.css' %}">
+
+    <!-- Подключаем шрифт -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div>
+        {% if messages or form.errors %}
+            <div class="notification
+                {% if messages %}
+                    notification-success
+                {% else %}
+                    notification-alert
+                {% endif %}"
+            >
+                <p>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    {% else %}
+                        <div style="list-style-type: none">
+                            <strong>Внимание!</strong>
+                            {{ form.errors }}
+                        </div>
+                    {% endif %}
+                </p>
+                <button class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+            </div>
+        {% endif %}
+
+        <div class="form__container">
+            <form id="registration__form" action="{% url 'users:registration' %}" method="post">
+                {% csrf_token %}
+                <div class="input__wrapper">
+                    <h1 class="title">Регистрация</h1>
+                    <label for="{{ form.username.id_for_label }}">Email:</label>
+                    {{ form.username }}
+
+                    <label for="{{ form.password1.id_for_label }}">Пароль:</label>
+                    {{ form.password1 }}
+
+                    <label for="{{ form.password2.id_for_label }}">Подтвердите пароль:</label>
+                    {{ form.password2 }}
+                    <button type="submit">Зарегистрироваться</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+	<script>
+		// код для обработки отправки формы
+		{#const form = document.querySelector('#registration-form');#}
+		{#form.addEventListener('submit', (event) => {#}
+		{#	event.preventDefault(); // предотвращаем отправку формы#}
+		{#	const email = form.elements.email.value;#}
+		{#	const password = form.elements.password.value;#}
+		{#	// здесь можно отправить данные на сервер для регистрации пользователя#}
+		{#	console.log(email, password); // для примера выводим данные в консоль#}
+		{#	form.reset(); });// очищаем форму #}
+
+
+
+
+
+
+
+
+        {#const password = document.getElementById('{{ form.password1.id_for_label }}');#}
+        {#const confirmPassword = document.getElementById('{{ form.password2.id_for_label }}');#}
+        {#const submitButton = document.querySelector('button[type="submit"]');#}
+        {##}
+        {#submitButton.addEventListener('click', (event) => {#}
+        {#  if (password.value === confirmPassword.value) {#}
+            {#confirmPassword.setCustomValidity('');#}
+            {#submitButton.disabled = false;#}
+            {#document.forms[0].submit(); // Отправляем форму, если пароли совпадают#}
+        {#  } else {#}
+            {#confirmPassword.setCustomValidity('Пароли не совпадают');#}
+            {#submitButton.disabled = true;#}
+            {#showErrorModal();#}
+        {#  }});#}
+        {##}
+        {#function showErrorModal() {#}
+        {#    const modal = document.createElement('div');#}
+        {#    modal.classList.add('modal');#}
+        {#    const content = document.createElement('div');#}
+        {#    content.classList.add('modal-content');#}
+        {#    const message = document.createElement('p');#}
+        {#    message.textContent = 'Пароли не совпадают, попробуйте еще раз';#}
+        {#    const closeButton = document.createElement('button');#}
+        {#    closeButton.textContent = 'Закрыть';#}
+        {#    closeButton.addEventListener('click', () => {#}
+        {#        modal.remove();#}
+        {#    });#}
+        {#    content.appendChild(message);#}
+        {#    content.appendChild(closeButton);#}
+        {#    modal.appendChild(content);#}
+        {#    document.body.appendChild(modal);}#}
+
+	</script>
+</body>
+</html>

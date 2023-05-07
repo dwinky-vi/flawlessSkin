@@ -4,7 +4,7 @@
 	font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
-.wrapper {
+.title__wrapper {
 	width: 100%;
     margin-top: 55px;
     /*position: absolute;*/
@@ -48,13 +48,13 @@
 }
 
 .pagination li.active a {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
+  /*background-color: #007bff;*/
+  /*color: #fff;*/
+  /*border-color: #007bff;*/
 }
 
-.pagination li.disabled a {
-  color: #ccc;
+.pagination li.disabled {
+  color: #b3b2b2;
   pointer-events: none;
   background-color: #fff;
   border-color: #ccc;
