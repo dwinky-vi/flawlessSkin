@@ -13,6 +13,7 @@
   column-gap: 30px; /* Отступ между колонками */
   row-gap: 45px; /* Отступ между рядами */
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .cards__title {
@@ -44,10 +45,13 @@
   flex: 0 0 220px; /* Задаем высоту 220px, запрещаем расширение и сужение по высоте */
   position: relative;
   overflow: hidden; /* Скрываем, что выходит за пределы */
+  background-color: white;
+  padding: 10px;
 }
 
 /* Контейнер для картинки */
 .card__image {
+  border-radius: 12px;
   display: block;
   position: absolute;
   top: 0;
@@ -57,15 +61,16 @@
 }
 
 .card__image > img {
+  border-radius: 30px;
   width: 100%;
   height: 100%;
   object-fit: contain; /* Встраиваем картинку в контейнер card__image */
   transition: 0.2s;
 }
 
-
  /*При наведении - увеличиваем картинку */
 .card__image:hover > img {
+  border-radius: 12px;
   transform: scale(1.15);
 }
 
@@ -110,24 +115,119 @@
   color: #CCCCCC;
 }
 
-.card__add {
-  display: block;
-  width: 100%;
-  font-weight: 400;
-  font-size: 17px;
-  color: #70c05b;
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #70c05b;
-  border-radius: 4px;
-  cursor: pointer; /* Меняем курсор при наведении */
-  transition: 0.2s;
+/*.add__to__cart {*/
+/*  display: block;*/
+/*  !*width: 100%;*!*/
+/*  font-weight: 400;*/
+/*  font-size: 17px;*/
+/*  color: #70c05b;*/
+/*  padding: 10px;*/
+/*  text-decoration: none;*/
+/*  text-align: center;*/
+/*  border: 1px solid #70c05b;*/
+/*  border-radius: 4px;*/
+/*  cursor: pointer; !* Меняем курсор при наведении *!*/
+/*  transition: 0.2s;*/
+/*  margin-top: auto; !* Прижимаем кнопку к низу карточки *!*/
+/*  background: inherit;*/
+/*}*/
+
+/*.add__to__cart:hover {*/
+/*  border: 1px solid #ff6633;*/
+/*  background-color: #ff6633;*/
+/*  color: #fff;*/
+/*}*/
+
+/*.add__to__favourites {*/
+/*  display: block;*/
+/*  !*width: 100%;*!*/
+/*  font-weight: 400;*/
+/*  font-size: 17px;*/
+/*  color: #70c05b;*/
+/*  padding: 10px;*/
+/*  text-decoration: none;*/
+/*  text-align: center;*/
+/*  border: 1px solid #70c05b;*/
+/*  border-radius: 4px;*/
+/*  cursor: pointer; !* Меняем курсор при наведении *!*/
+/*  transition: 0.2s;*/
+/*  !*margin-top: auto; !* Прижимаем кнопку к низу карточки *!*!*/
+/*  background: inherit;*/
+/*}*/
+
+
+
+
+
+
+
+
+
+.actions {
+  /*border: 1px solid red;*/
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-top: auto; /* Прижимаем кнопку к низу карточки */
-  background: inherit;
 }
 
-.card__add:hover {
+.add__to__cart {
+  display: block;
+  width: 65%;
+  font-weight: 500;
+  font-size: 19px;
+  color: #70c05b;
+  padding: 10px;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid #70c05b;
+  border-radius: 5px;
+  cursor: pointer; /* Меняем курсор при наведении */
+  transition: 0.2s;
+  background: inherit;
+  margin-right: 10px;
+}
+
+.add__to__cart:hover {
   border: 1px solid #ff6633;
   background-color: #ff6633;
   color: #fff;
+}
+
+.add__to__favourites {
+  /*border: 1px solid black;*/
+  scroll-snap-align: center;
+  max-width: 30%;
+  /*padding: 10px;*/
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+  /*overflow: hidden; !* Прячем всё за пределами *!*/
+  /*object-fit: cover; /*/
+  /*background: inherit;*/
+  /*background-image: url("../img/like.png");*/
+  /*background-position: center;*/
+  /*background-repeat: no-repeat;*/
+  /*background-size: cover; !* чтобы занимала  всю площадь экрнана*!*/
+
+}
+
+.add__to__favourites > img {
+  /*width: 80%;*/
+  /*height: 80%;*/
+  /*width: 100%; !* Ширина изображений *!*/
+  /*height: 100%; !* Высота изображении *!*/
+  /*object-fit: contain; !* Встраиваем картинку в контейнер add__to__favourites *!*/
+  transition: transform 0.2s linear;
+}
+
+.add__to__favourites:hover > img {
+  /*width: 60%;*/
+  /*height: 60%;*/
+  object-fit: contain; /* Встраиваем картинку в контейнер add__to__favourites */
+  transform: scale(1.1);
 }

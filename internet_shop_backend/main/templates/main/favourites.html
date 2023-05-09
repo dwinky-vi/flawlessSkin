@@ -1,0 +1,50 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load humanize %} <!-- {# для отображения цены красиво (10 000)#} -->
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'main/css/card_preview.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/favourites.css' %}">
+{% endblock %}
+
+{% block content %}
+     <div class="title__wrapper">
+        <div class="container">
+            <div class="title">
+                <h1 class="title">Избранное</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="container">
+            <div class="card__holder">
+                {% for item in favourites %}
+                    <div class="card__preview">
+                        <div class="card__top">
+                            <a href="{% url 'products:card-detail' item.product.id %}" class="card__image">
+                              <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'uploads/default_image_2.png' %}{% endif %}" alt="{{ item.product.title }}"/>
+                            </a>
+                        </div>
+                        <div class="card__bottom">
+                            <div class="card__prices">
+                              <div class="card__price">{{ item.product.price|intcomma }}</div>
+                            </div>
+                            <a href="{% url 'products:card-detail' item.product.id %}" class="card__title">{{ item.product.title }}</a>
+                            <div class="actions">
+                                <a class="add__to__cart" href="{% url 'products:add_to_cart' item.product.id %}">
+                                    в корзину
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                <h3>Произошла ошибка, пожалуйста, подождите какое-то время</h3>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -28,7 +28,7 @@
                 <div class="nav">
                     <a class="nav__link" href="#">Поиск</a>
                     <a class="nav__link" href="{% url 'products:catalog' %}">Каталог</a>
-                    <a class="nav__link" href="#">Избранное</a>
+                    <a class="nav__link" href="{% url 'products:favourites' %}">Избранное</a>
                     <a class="nav__link" href="{% url 'products:cart' %}">Корзина</a>
                     {% if user.is_authenticated %}
                         <a class="" href="{% url 'users:profile' %}"><img src="{% static 'main/img/profile_icon_2.png' %}"> </a>
@@ -62,10 +62,10 @@
                 <div class="footer__section">
                     <h4 class="footer__section__title">Ссылки</h4>
                     <ul class="footer__ul">
-                        <li><a href="#" class="footer__link">Главная</a></li>
-                        <li><a href="#" class="footer__link">Каталог товаров</a></li>
+                        <li><a href="{% url 'products:index' %}" class="footer__link">Главная</a></li>
+                        <li><a href="{% url 'products:catalog' %}" class="footer__link">Каталог товаров</a></li>
                         <li><a href="#" class="footer__link">О нас</a></li>
-                        <li><a href="#" class="footer__link">Контакты</a></li>
+                        <li><a href="#" class="footer__link">Доставка и оплата</a></li>
                     </ul>
                 </div>
                 <div class="footer__section">

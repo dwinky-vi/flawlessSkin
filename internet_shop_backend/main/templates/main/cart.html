@@ -2,9 +2,60 @@
 {% load static %}
 
 {% block css %}
-
+    <link rel="stylesheet" href="{% static 'main/css/cart.css' %}">
 {% endblock %}
 
 {% block content %}
-     <h1>Корзина</h1>
+     <div class="title__wrapper">
+        <div class="container">
+            <div class="title">
+                <h1 class="title">Корзина</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart">
+        <div class="container">
+            {% if carts %}
+                <table class="cart__table">
+                    <thead>
+                    <tr>
+                        <th>Фото</th>
+                        <th>Название</th>
+                        <th>Цена</th>
+                        <th>Количество, штук</th>
+                        <th>Сумма</th>
+                        <th>Удалить</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for cart in carts %}
+                        <tr>
+                            <td><img src="{{ cart.product.image.url }}" alt="{{ cart.product.title }}"></td>
+                            <td>{{ cart.product.title }}<br><small>ID: {{ cart.product.id }}</small></td>
+                            <td>{{ cart.product.price }} руб.</td>
+                            <td><input type="number" name="quantity" min="1" value="{{ cart.quantity }}"></td>
+                            <td>{{ cart.sum_price }} руб.</td>
+                            <td><a href="{% url 'products:delete_for_cart' cart.id %}" class="cart__delete">удалить<i class="fa fa-trash"></i></a></td>
+    {#                      <button type="button" data-cart-id="{{ cart.id }}" class="cart__delete">Удалить</button>#}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="cart__actions">
+                    <a href="" class=" cart__to__clear">Очистить корзину</a>
+                    <div class="cart__total">
+                        <span>Всего товаров:</span> {{ carts.0.total_quantity }}
+                    </div>
+                    <div class="cart__total">
+                        <span>Итого:</span> {{ carts.0.total_amount }} руб.
+                    </div>
+                    <a href="" class="cart__to__order">Оформить заказ</a>
+                </div>
+            {% else %}
+                <p class="cart__empty">Корзина пустая</p>
+            {% endif %}
+        </div>
+    </div>
+
 {% endblock %}

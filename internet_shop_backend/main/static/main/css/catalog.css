@@ -25,7 +25,8 @@
     color: #619d88;
 }
 
-/* пагинация страницы */
+    /* пагинация страницы */
+
 .pagination {
   display: flex;
   justify-content: center;

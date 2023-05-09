@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib import auth, messages
 from .models import User
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -45,6 +46,7 @@ def registration(request):
 	}
 	return render(request, 'users/registration.html', context)
 
+@login_required
 def profile(request):
 	if request.method == "POST":
 		form = UserProfileForm(instance=request.user, data=request.POST)
@@ -60,6 +62,7 @@ def profile(request):
 	}
 	return render(request, 'users/profile.html', context)
 
+@login_required
 def logout(request):
 	auth.logout(request)
 	return HttpResponseRedirect(reverse('products:index'))

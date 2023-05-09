@@ -1,0 +1,145 @@
+
+.title__wrapper {
+	width: 100%;
+    margin-top: 55px;
+}
+
+.title {
+    /*margin-bottom: 30px;*/
+    text-align: center;
+    text-transform: uppercase;
+    color: black;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/*.cart-table td:nth-child(3),*/
+/*.cart-table td:nth-child(5) {*/
+/*  text-align: right;*/
+/*}*/
+
+/*.cart-table td:nth-child(4) {*/
+/*  text-align: center;*/
+/*}*/
+
+
+.cart {
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+.cart__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    border-spacing: 0;
+}
+
+thead tr th {
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+    border-bottom: 2px solid #333;
+}
+
+tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+tbody td {
+    text-align: left;
+    padding: 10px;
+    /*border-bottom: 1px solid #ddd;*/
+    border-bottom: 1px solid #ccc;
+    /*vertical-align: top;*/
+    vertical-align: middle;
+}
+
+tbody td small {
+  display: block;
+  font-size: 12px;
+  color: #777;
+}
+
+td img {
+    max-width: 120px;
+    max-height: 120px;
+    /*display: block;*/
+    /*margin: 0 auto;*/
+}
+
+td input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.cart__delete {
+    display: inline-block;
+    padding: 5px;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /*padding: 5px 10px;*/
+}
+
+td .delete {
+    width: 24px;
+    height: 24px;
+    background-image: url("path/to/cart-icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cart__delete:hover {
+    background-color: #da190b;
+}
+
+.cart__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart__to__clear {
+	display: inline-block;
+	padding: 10px;
+    background-color: #fff;
+	color: black;
+	text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+}
+
+.cart__to__order {
+    display: inline-block;
+    background-color: #00fa00;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    float: right;
+}
+
+.cart__empty {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}

@@ -6,6 +6,7 @@
 {% block css %}
 	<link rel="stylesheet" href="{% static 'main/css/card_preview.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/catalog.css' %}">
+
 {% endblock %}
 
 
@@ -33,7 +34,14 @@
                               <div class="card__price">{{ product.price|intcomma }}</div>
                             </div>
                             <a href="{% url 'products:card-detail' product.id %}" class="card__title">{{ product.title }}</a>
-                            <button class="card__add">В корзину</button>
+                            <div class="actions">
+                                <a class="add__to__cart" href="{% url 'products:add_to_cart' product.id %}">
+                                    в корзину
+                                </a>
+                                <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">
+                                    <img src="{% static 'main/img/green_like.png' %}">
+                                </a>
+                            </div>
                         </div>
                     </div>
                 {% empty %}
@@ -41,7 +49,7 @@
                 {% endfor %}
             </div>
             {% if paginator.num_pages > 1 %}
-                Всего страниц: {{ paginator.num_pages }} &lt; &gt;
+{#                Всего страниц: {{ paginator.num_pages }} &lt; &gt;#}
             {% endif %}
             <hr>
             <div class="pagination">
@@ -49,6 +57,7 @@
                     {% if paginator.num_pages > 1 %}
                         {% if page_obj.has_previous %}
                             <li><a href="?page={{ page_obj.previous_page_number }}">&larr;</a></li>
+{#                            <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>#}
                         {% endif %}
                         {% for page in paginator.page_range %}
                             {% if page_obj.number == page %}
@@ -60,6 +69,7 @@
                         {% endfor %}
                         {% if page_obj.has_next %}
                             <li><a href="?page={{ page_obj.next_page_number }}">&rarr;</a></li>
+{#                            <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>#}
                         {% endif %}
                     {% endif %}
                 </ul>

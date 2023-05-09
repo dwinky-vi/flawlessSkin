@@ -2,10 +2,11 @@
 {# подключаем папку static/ или статические файлы #}
 {# необходимо прописывать у каждого файла, в котором используются статические файлы #}
 {% load static %}
+{% load humanize %} <!-- {# для отображения цены красиво (10 000)#} -->
 
 {% block css %}
 	<link rel="stylesheet" href="{% static 'main/css/card_preview.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -13,7 +14,7 @@
 		<div class="container">
 			<div class="intro__inner">
 				<h1 class="intro__title">Открой мир японской косметики с <span style="text-transform: none; background-color: inherit;">FlawlessSkin</span></h1>
-				<a class="intro__btn">Узнать больше</a>
+				<a href="{% url 'products:catalog' %}" class="intro__btn">В каталог</a>
 
 			</div>
 		</div>
@@ -49,16 +50,23 @@
 					<!--https://codelab.pro/sozdaem-kartochki-tovarov-na-html-i-css/?ysclid=lgyz2xs083793664877-->
 					<div class="card__preview">
 						<div class="card__top">
-							<a href="#" class="card__image">
+							<a href="{% url 'products:card-detail' product.id %}" class="card__image">
 							  <img src="{{ product.image.url }}" alt="{{ product.title }}"/>
 							</a>
 						</div>
 						<div class="card__bottom">
 							<div class="card__prices">
-							  <div class="card__price">{{ product.price }}</div>
+							  <div class="card__price">{{ product.price|intcomma }}</div>
 							</div>
-							<a href="#" class="card__title">{{ product.title }}</a>
-							<button class="card__add">В корзину</button>
+							<a href="{% url 'products:card-detail' product.id %}" class="card__title">{{ product.title }}</a>
+							<div class="actions">
+                                <a class="add__to__cart" href="{% url 'products:add_to_cart' product.id %}">
+                                    в корзину
+                                </a>
+                                <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">
+                                    <img src="{% static 'main/img/white_like.png' %}">
+                                </a>
+                            </div>
 						</div>
 					</div>
 				{% endfor %}
