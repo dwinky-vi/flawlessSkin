@@ -43,25 +43,25 @@
                     {{ form.address }}
                     <label class="profile__label" for="{{ form.address.id_for_label }}">Адрес доставки</label>
                 </div>
-                <div class="row">
+                <div class="row actions">
                     <button type="submit" class="btn__save">Сохранить</button>
                 </div>
             </form>
         </div>
     </div>
-    {% if user.is_superuser or user.is_staff %}
-        <div class="container">
-            <div class="admin__panel">
-                    <a href="{% url 'admin:index' %}">Админ панель</a>
-            </div>
-        </div>
-    {% endif %}
+{#    {% if user.is_superuser or user.is_staff %}#}
+{#        <div class="container">#}
+{#            <div class="admin__panel">#}
+{#                    <a href="{% url 'admin:index' %}">Админ панель</a>#}
+{#            </div>#}
+{#        </div>#}
+{#    {% endif %}#}
 
-    <div class="logout">
-        <div class="container">
-            <a href="{% url 'users:logout' %}">Выйти из аккаунта</a>
-        </div>
-    </div>
+{#    <div class="logout">#}
+{#        <div class="container">#}
+{#            <a href="{% url 'users:logout' %}">Выйти из аккаунта</a>#}
+{#        </div>#}
+{#    </div>#}
     <script>
         const inputs = document.querySelectorAll('.profile__input');
         const labels = document.querySelectorAll('.profile__label');

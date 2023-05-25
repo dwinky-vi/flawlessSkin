@@ -15,7 +15,6 @@
 			<div class="intro__inner">
 				<h1 class="intro__title">Открой мир японской косметики с <span style="text-transform: none; background-color: inherit;">FlawlessSkin</span></h1>
 				<a href="{% url 'products:catalog' %}" class="intro__btn">В каталог</a>
-
 			</div>
 		</div>
 	</div>
@@ -50,7 +49,7 @@
 					<!--https://codelab.pro/sozdaem-kartochki-tovarov-na-html-i-css/?ysclid=lgyz2xs083793664877-->
 					<div class="card__preview">
 						<div class="card__top">
-							<a href="{% url 'products:card-detail' product.id %}" class="card__image">
+							<a href="{% url 'products:card_detail' product.slug %}" class="card__image">
 							  <img src="{{ product.image.url }}" alt="{{ product.title }}"/>
 							</a>
 						</div>
@@ -58,13 +57,18 @@
 							<div class="card__prices">
 							  <div class="card__price">{{ product.price|intcomma }}</div>
 							</div>
-							<a href="{% url 'products:card-detail' product.id %}" class="card__title">{{ product.title }}</a>
+							<a href="{% url 'products:card_detail' product.slug %}" class="card__title">{{ product.title }}</a>
 							<div class="actions">
                                 <a class="add__to__cart" href="{% url 'products:add_to_cart' product.id %}">
                                     в корзину
                                 </a>
                                 <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">
-                                    <img src="{% static 'main/img/white_like.png' %}">
+{#                                    <img src="{% static 'main/img/white_like.png' %}">#}
+                                     {% if product in favourites_products_list %}
+                                        <i class="fa-solid fa-heart fa-2xl" style="color: #d64c4c;"></i>
+                                    {% else %}
+                                        <i class="fa-regular fa-heart fa-2xl" style="color: #d64c4c;"></i>
+                                    {% endif %}
                                 </a>
                             </div>
 						</div>

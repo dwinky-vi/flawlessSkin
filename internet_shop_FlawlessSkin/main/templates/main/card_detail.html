@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% load humanize %} <!-- {# для отображения цены красиво (10 000)#} -->
-{% load thumbnail %} {# зачем????? #}
+{% load thumbnail %} {# зачем?????
 
 
 {% block css %}
@@ -11,15 +11,18 @@
 {% block content %}
      <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="block__img">
                 <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'uploads/image_2.png' %}{% endif %}"
-                     alt="{{ product.title }}" class="product-image">
+                     alt="{{ product.title }}" class="product__image">
             </div>
-            <div class="col-md-6">
+            <div class="block__text col-md-6">
                 <h2>{{ product.title }}</h2>
-                <p>{{ product.description|safe }}</p>
+                <p>{{ product.description|linebreaks }}</p>
                 <div class="product-details">
                     <dl>
+                        <dt>Категория:</dt>
+                        <dd>{{ product.category }}</dd>
+
                         <dt>Бренд:</dt>
                         <dd>{{ product.brand }}</dd>
 
@@ -31,20 +34,17 @@
 
                         <dt>Цена:</dt>
                         <dd>{{ product.price|intcomma }} руб.</dd>
-
-                        <dt>Дата поступления товара:</dt>
-                        <dd>{{ product.date|date:"d E Y г." }}</dd>
                     </dl>
                 </div>
-                <div class="buttons">
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">Добавить в корзину</button>
-                    </form>
-                    <form method="POST" action="">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-outline-secondary">Добавить в избранное</button>
-                    </form>
+                <div class="actions">
+                    <a class="add__to__cart" href="{% url 'products:add_to_cart' product.id %}">
+                        Добавить в корзину
+                    </a>
+                        {% if is_favourite %}
+                            <a class="in__favourites" href="{% url 'products:add_to_favourites' product.id %}">В избранном</a>
+                        {% else %}
+                            <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">Добавить в избранное</a>
+                        {% endif %}
                 </div>
             </div>
         </div>

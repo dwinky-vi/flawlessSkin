@@ -39,10 +39,11 @@ INSTALLED_APPS = [
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
 	
+	
 	'main',
+	'users',
 	'django.contrib.humanize',
 	'sorl.thumbnail',
-	'users',
 ]
 
 # промежуточные слои
@@ -85,6 +86,30 @@ DATABASES = {
 		'NAME': BASE_DIR / 'db.sqlite3',
 	}
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'OPTIONS': {
+#             'read_default_file': '/path/to/my.cnf',
+#         },
+#     }
+# }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'mydatabase1',
+#         'USER': 'root',
+#         'PASSWORD': 'vitaly12345',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+# 			'charset': 'utf8mb4',
+# 		},
+# 		'CONN_MAX_AGE': 3600,
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -131,11 +156,18 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # сохранение файлов
-MEDIA_URL = "/media/"
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "/media/"
 
 # users
 AUTH_USER_MODEL = 'users.User'
 # для декоратова login_required
 LOGIN_URL = '/users/login/'
+
+
+# отправка email писем
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'birgita3244444@gmail.com'
+EMAIL_HOST_PASSWORD = 'qazwsxedcQWE123()'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

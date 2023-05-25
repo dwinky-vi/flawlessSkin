@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings  # по сути тут мы импортируем наш файл settings, но там не все настройки, поэтому импортируем глобальный settings
 from django.conf.urls.static import static
+from main.views import pageNotFound
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,7 +27,10 @@ urlpatterns = [
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # это больше для выгрузки на сервер
 
+# обработчик для страницу 404
+handler404 = pageNotFound
+
 # включаем возможность обработки картинок
 # без неё не работало
-if settings.DEBUG == True:
+if settings.DEBUG is True:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

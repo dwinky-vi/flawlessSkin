@@ -1,7 +1,6 @@
 from django.db import models
-
+from django.urls import reverse
 from users.models import User
-
 
 # Create your models here.
 # models == модели == таблицы
@@ -16,6 +15,7 @@ from users.models import User
 # • all() - возвращает список всех объектов из БД
 # • filter() - возвращает список объектов из БД по определенному признаку
 
+	# КАТЕГОРИЯ
 class ProductCategory(models.Model):
 	name = models.CharField("Название", max_length=128, unique=True)
 	description = models.TextField("Описание", null=True, blank=True)
@@ -27,7 +27,20 @@ class ProductCategory(models.Model):
 		verbose_name = "Категория товара"
 		verbose_name_plural = "Категории товаров"
 
+	# БРЕНД
+class ProductBrand(models.Model):
+	name = models.CharField("Название", max_length=128, unique=True)
+	country = models.CharField("Страна бренда", max_length=128, null=True, blank=True)
+	description = models.TextField("Описание", null=True, blank=True)
 
+	def __str__(self):
+		return self.name
+	
+	class Meta:
+		verbose_name = "Бренд"
+		verbose_name_plural = "Бренды"
+
+	# ПРОДУКТ/ТОВАР
 class Product(models.Model):
 	units_of_measurement = (
 		('kg', 'кг'),
@@ -38,29 +51,37 @@ class Product(models.Model):
 		('portion', 'порции'),
 		('pairs', 'пар'),
 	)
+	# unique = True,
 	title = models.CharField("Название товара", max_length=255, default="")
+	slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
 	image = models.ImageField("Фото товара", upload_to="uploads/products/", default="uploads/default_image_1.png",
 							  max_length=255)
 	description = models.TextField("Описание", help_text="Укажите подробное описание товара")
 	structure = models.TextField("Состав", help_text="Укажите компоненты через запятую (,)")
 	price = models.IntegerField("Цена", help_text="Введите число без пробелов")
 	country_manufacture = models.CharField("Производство", max_length=50, help_text="Страна производства товара")
-	brand = models.CharField("Бренд", max_length=50)
+	brand = models.ForeignKey(verbose_name="Бренд", to=ProductBrand, on_delete=models.PROTECT, null=True)
 	volume = models.PositiveIntegerField("Объём продукта")
 	unit_of_measurement_of_volume = models.CharField("Выберите единицу измерения объёма продукта", max_length=100,
 													 choices=units_of_measurement)
-	date = models.DateField("Дата поступления товара")
+	date = models.DateTimeField(auto_now_add=True)
+	time_update = models.DateTimeField(auto_now=True)
 	quantity = models.PositiveIntegerField("Количество штук", default=0)
+	category = models.ForeignKey(to=ProductCategory, on_delete=models.PROTECT, default=1)
 	#     есть 3 вида удаления:
 	#     CASCADE (при удаление одной категории, удалятся все товары, которые принадлежат данной категории)
 	#     PROTECT (нельзя будет удалить категорию, пока есть товары принадлежащие данной категории)
 	#     SET_DEFAULT (если удаляется категория, то в эту переменную ставится значение по умолчанию)
-	
-	category = models.ForeignKey(to=ProductCategory, on_delete=models.PROTECT, default=1)
-	
+
 	def __str__(self):
 		return self.title
-	
+
+	# def get_absolute_url(self):
+	# 	return reverse('products:card_detail', kwargs={'product_id': self.pk})
+
+	def get_absolute_url(self):
+		return reverse('products:card_detail', kwargs={'product_slug': self.slug})
+
 	class Meta:
 		verbose_name = "Товар"
 		verbose_name_plural = "Товары"
@@ -82,14 +103,14 @@ class Favourites(models.Model):
 		verbose_name_plural = "Избранные"
 
 
-class CartQuerySet(models.QuerySet):
-	# итоговая сумма всех товаров в корзине
-	def total_amount(self):
-		return sum(cart.sum() for cart in self)
-		
-	# количество всех товаров в корзине
-	def total_quantity(self):
-		return sum(cart.quantity for cart in self)
+# class CartQuerySet(models.QuerySet):
+# 	# итоговая сумма всех товаров в корзине
+# 	def total_amount(self):
+# 		return sum(cart.sum() for cart in self)
+#
+# 	# количество всех товаров в корзине
+# 	def total_quantity(self):
+# 		return sum(cart.quantity for cart in self)
 
 
 	# КОРЗИНА
@@ -124,6 +145,6 @@ class Cart(models.Model):
 		carts = Cart.objects.filter(user=self.user)
 		return sum(cart.quantity for cart in carts)
 
-	objects = CartQuerySet.as_manager()
+	# objects = CartQuerySet.as_manager()
 
 

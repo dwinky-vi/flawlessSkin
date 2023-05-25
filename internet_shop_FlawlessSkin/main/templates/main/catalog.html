@@ -6,6 +6,7 @@
 {% block css %}
 	<link rel="stylesheet" href="{% static 'main/css/card_preview.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/catalog.css' %}">
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">#}
 
 {% endblock %}
 
@@ -25,7 +26,9 @@
                 {% for product in products_list %}
                     <div class="card__preview">
                         <div class="card__top">
-                            <a href="{% url 'products:card-detail' product.id %}" class="card__image">
+{#                            <a href="{% url 'products:card_detail' product.id %}" class="card__image">#}
+                            <a href="{% url 'products:card_detail' product.slug %}" class="card__image">
+
                               <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'uploads/default_image_2.png' %}{% endif %}" alt="{{ product.title }}"/>
                             </a>
                         </div>
@@ -33,13 +36,19 @@
                             <div class="card__prices">
                               <div class="card__price">{{ product.price|intcomma }}</div>
                             </div>
-                            <a href="{% url 'products:card-detail' product.id %}" class="card__title">{{ product.title }}</a>
+{#                            <a href="{% url 'products:card_detail' product.id %}" class="card__title">{{ product.title }}</a>#}
+                            <a href="{{ product.get_absolute_url }}" class="card__title">{{ product.title }}</a>
                             <div class="actions">
                                 <a class="add__to__cart" href="{% url 'products:add_to_cart' product.id %}">
                                     в корзину
                                 </a>
                                 <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">
-                                    <img src="{% static 'main/img/red_like.png' %}">
+{#                                    <img src="{% static 'main/img/red_like.png' %}">#}
+                                    {% if product in favourites_products_list %}
+                                        <i class="fa-solid fa-heart fa-2xl" style="color: #d64c4c;"></i>
+                                    {% else %}
+                                        <i class="fa-regular fa-heart fa-2xl" style="color: #d64c4c;"></i>
+                                    {% endif %}
                                 </a>
                             </div>
                         </div>

@@ -5,6 +5,7 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'main/css/card_preview.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/favourites.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
 
 {% block content %}
@@ -17,12 +18,13 @@
     </div>
 
     <div class="cards">
+
         <div class="container">
             <div class="card__holder">
                 {% for item in favourites %}
                     <div class="card__preview">
                         <div class="card__top">
-                            <a href="{% url 'products:card-detail' item.product.id %}" class="card__image">
+                            <a href="{% url 'products:card_detail' item.product.slug %}" class="card__image">
                               <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'uploads/default_image_2.png' %}{% endif %}" alt="{{ item.product.title }}"/>
                             </a>
                         </div>
@@ -30,16 +32,20 @@
                             <div class="card__prices">
                               <div class="card__price">{{ item.product.price|intcomma }}</div>
                             </div>
-                            <a href="{% url 'products:card-detail' item.product.id %}" class="card__title">{{ item.product.title }}</a>
+                            <a href="{% url 'products:card_detail' item.product.slug %}" class="card__title">{{ item.product.title }}</a>
                             <div class="actions">
                                 <a class="add__to__cart" href="{% url 'products:add_to_cart' item.product.id %}">
                                     в корзину
+                                </a>
+                                <a href="{% url 'products:remove_from_favourites' item.id %}">
+                                    <i class="fa-regular fa-trash fa-xl" style="color: #e62d2d;"></i>
+{#                                    удалить#}
                                 </a>
                             </div>
                         </div>
                     </div>
                 {% empty %}
-                <h3>Произошла ошибка, пожалуйста, подождите какое-то время</h3>
+                <h3>Здесь пока ничего нет</h3>
                 {% endfor %}
             </div>
 

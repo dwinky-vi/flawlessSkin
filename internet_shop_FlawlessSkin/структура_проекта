@@ -1,0 +1,59 @@
+├── internet_shopFlawlessSkin
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── main
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── static
+│	│	└── main
+│   │    	├── css
+│   │    	├── img
+│   │    	└── js
+│   ├── templates
+│	│	└── main
+│   │    	├── base.html
+│   │    	├── card_detail.html
+│   │    	├── cart.html
+│   │    	├── catalog.html
+│   │    	├── favourites.html
+│   │    	└── index.html
+│   └── migrations
+│           └── ...
+├── users
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+│   ├── static
+│	│	└── users
+│   │    	├── css
+│   │    	└── img
+│   ├── templates
+│	│	└── users
+│   │    	├── base.html
+│   │    	├── login.html
+│   │    	├── profile.html
+│   │    	└── registration.html
+│   └── migrations
+│           └── ...
+├── media
+│   └── uploads
+│       └── products
+│           ├── ...
+│        	└── default_image.png
+├── venv
+│   └── ...
+├── manage.py
+└── ...

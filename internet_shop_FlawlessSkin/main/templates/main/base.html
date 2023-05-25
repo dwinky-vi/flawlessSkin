@@ -9,6 +9,7 @@
     <title>{% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Подключаем стили -->
     {% block css %}
 	{% endblock %}
@@ -26,12 +27,21 @@
                     <a href="{% url 'products:index' %}" class="header__logo__link">FlawlessSkin</a>
                 </div>
                 <div class="nav">
-                    <a class="nav__link" href="{#  #}">Поиск</a>
+                    <a class="nav__link" href="{% url 'products:search' %}">Поиск</a>
                     <a class="nav__link" href="{% url 'products:catalog' %}">Каталог</a>
                     <a class="nav__link" href="{% url 'products:favourites' %}">Избранное</a>
                     <a class="nav__link" href="{% url 'products:cart' %}">Корзина</a>
                     {% if user.is_authenticated %}
-                        <a class="" href="{% url 'users:profile' %}"><img src="{% static 'main/img/profile_icon_2.png' %}"> </a>
+                        <div class="dropdown">
+                            <a class="dropdown__img" href="{% url 'users:profile' %}">
+                                <img src="{% static 'main/img/profile_icon_2.png' %}">
+                            </a>
+                            <div class="dropdown__content">
+                                <a class="dropdown__link" href="{% url 'users:profile' %}">Профиль</a>
+                                <a class="dropdown__link" href="{% url 'admin:index' %}">Админ панель</a>
+                                <a class="dropdown__link" href="{% url 'users:logout' %}">Выйти</a>
+                            </div>
+                    </div>
                     {% else %}
                         <a class="nav__link" href="{% url 'users:login' %}">Войти</a>
                     {% endif %}
@@ -41,7 +51,7 @@
                         <img src="{% static 'main/img/menu.png' %}" alt="меню">
                     </button>
                     <div id="menu" class="burger__slide disp">
-                        <a class="nav__link block" href="{#  #}">Поиск</a>
+                        <a class="nav__link block" href="{% url 'products:search' %}">Поиск</a>
                         <a class="nav__link block" href="{% url 'products:catalog' %}">Каталог</a>
                         <a class="nav__link block" href="{% url 'products:favourites' %}">Избранное</a>
                         <a class="nav__link block" href="{% url 'products:cart' %}">Корзина</a>

@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+	font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.title__wrapper {
+	width: 100%;
+    margin-top: 55px;
+    /*position: absolute;*/
+}
+
+.title {
+    text-align: center;
+    text-transform: uppercase;
+    /*background: #FFB085;*/
+    color: black;
+}
