@@ -16,7 +16,8 @@ urlpatterns = [
 	
 	path('favourites/', views.favourites, name="favourites"),
 	path('favourites/add/<int:product_id>', views.add_to_favourites, name="add_to_favourites"),
-	path('favourites/remove/<int:favourites_id>', views.remove_from_favourites, name="remove_from_favourites"),
+	# path('favourites/remove/<int:favourites_id>', views.remove_from_favourites, name="remove_from_favourites"),
+	path('favourites/remove/<int:product_id>', views.remove_from_favourites, name="remove_from_favourites"),
 	
 	path('cart/', views.cart, name="cart"),
 	path('cart/add/<int:product_id>/', views.add_to_cart, name="add_to_cart"),
@@ -25,4 +26,7 @@ urlpatterns = [
 	path('cart/empty_the_cart/', views.empty_the_cart, name="empty_the_cart"),
 	path('update_cart_quantity/', views.update_cart_quantity, name='update_cart_quantity'),
 
+
+	path('order/make/', views.make_order, name="make_order"),
+	path('order/save/', views.save_order, name="save_order"),
 ]

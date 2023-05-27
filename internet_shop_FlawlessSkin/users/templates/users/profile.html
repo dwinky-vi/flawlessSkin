@@ -1,13 +1,20 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block css %}
-     <!-- Bootstrap core CSS -->
-{#    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">#}
-{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">#}
+{% block title %}Профиль{% endblock %}
 
+{% block css %}
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=72e10dbf-b2a3-437b-8bf6-0c8b4cdd1e4d&lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+
+        function init() {
+            let suggestView = new ymaps.SuggestView('address');
+        }
+    </script>
 {% endblock %}
 
 {% block content %}

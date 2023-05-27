@@ -49,11 +49,8 @@ class UserProfileForm(UserChangeForm):
 	phone = forms.CharField(widget=forms.TextInput(attrs={
 		"class": "profile__input validate", "type": "tel", "placeholder": " ",
 	}), required=False)
-	# email = forms.CharField(widget=forms.EmailInput(attrs={
-	# 	"class": "profile__input validate", "type": "email", "placeholder": " ",
-	# }))
 	address = forms.CharField(widget=forms.TextInput(attrs={
-		"class": "profile__input validate", "type": "text", "placeholder": " ",
+		"class": "profile__input validate", "type": "text", "placeholder": " ", "id": "address",
 	}), required=False)
 	
 	class Meta:

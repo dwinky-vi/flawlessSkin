@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 def login_old(request):
 	return render(request, 'users/base.html')
 
-# gydxox-vamHum-5hihty
 def login(request):
 	if request.method == 'POST':
 		form = UserLoginForm(data=request.POST)

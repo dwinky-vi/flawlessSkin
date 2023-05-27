@@ -40,6 +40,19 @@
     border-spacing: 0;
 }
 
+.cart__table td:nth-child(3) {
+    white-space: nowrap;
+    /*min-width: 100px;*/
+}
+
+.cart__table td:nth-child(4) {
+    text-align: center;
+}
+
+.cart__table td:nth-child(5) {
+    white-space: nowrap;
+}
+
 thead tr th {
     font-weight: bold;
     text-align: left;
@@ -79,7 +92,7 @@ td img {
 td input[type="number"] {
     width: 50px;
     padding: 5px;
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     border-radius: 4px;
     border: 1px solid #ccc;
     text-align: center;
@@ -100,7 +113,6 @@ td input[type="number"] {
 td .delete {
     width: 24px;
     height: 24px;
-    background-image: url("path/to/cart-icon.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -120,7 +132,6 @@ td .delete {
 	display: inline-block;
 	padding: 10px;
     background-color: #fff;
-	color: black;
 	text-decoration: none;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -129,7 +140,7 @@ td .delete {
 
 .cart__to__order {
     display: inline-block;
-    background-color: #00fa00;
+    background-color: #47fa33;
     border: none;
     padding: 10px 20px;
     text-decoration: none;
@@ -138,8 +149,47 @@ td .delete {
     float: right;
 }
 
+.cart__to__order:hover {
+    background-color: #07cb45;
+}
+
 .cart__empty {
-    text-align: center;
+    text-align: left;
     font-size: 18px;
-    font-weight: bold;
+    line-height: 24px;
+    letter-spacing: 0.18px;
+}
+
+.text {
+    margin-bottom: 40px;
+}
+
+.text a {
+    color: black;
+}
+
+.text a:hover {
+    color: initial;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.btn {
+    display: table;
+    font-size: 15px;
+    color: #fff !important;
+    background-color: #202020;
+    border-radius: 30px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    /*font-family: GothamPro-Medium;*/
+    padding: 15px 10px;
+    border: 0;
+}
+
+.btn:hover {
+    opacity: 1;
+    color: #d4d0d0;
+    background-color: #000;
 }

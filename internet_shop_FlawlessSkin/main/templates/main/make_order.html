@@ -1,0 +1,95 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load humanize %} <!-- {# для отображения цены красиво (10 000)#} -->
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'main/css/make_order.css' %}">
+{#    <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script>#}
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=72e10dbf-b2a3-437b-8bf6-0c8b4cdd1e4d&lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+
+        function init() {
+            let suggestView = new ymaps.SuggestView('address');
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+     <div class="title__wrapper">
+        <div class="container">
+            <div class="title">
+                <h1 class="title">Оформление заказа</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="wrapper__inner">
+                <form id="order-form" class="" action="{%  url 'products:make_order' %}" method="post">
+                    {% csrf_token %}
+                    <div class="block">
+                        <label class="" for="{{ form.first_name.id_for_label }}">Имя:</label>
+                        {{ form.first_name }}
+                    </div>
+
+                    <div class="block">
+                        <label class="" for="{{ form.last_name.id_for_label }}">Фамилия: </label>
+                        {{ form.last_name }}
+                    </div>
+
+                    <div class="block">
+                        <label class="" for="{{ form.phone.id_for_label }}">Телефон:</label>
+                        {{ form.phone }}
+                    </div>
+
+                    <div class="block">
+                        <label class="" for="{{ form.email.id_for_label }}">Email:</label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="block">
+                        <label class="" for="{{ form.address.id_for_label }}">Адрес доставки:</label>
+                        {{ form.address }}
+                    </div>
+
+                    <div class="block">
+                        <label for="payment">Способ оплаты:</label>
+                        <select id="payment" name="payment">
+                            <option value="cash">Наличными курьеру</option>
+                            <option value="card">Банковской картой курьеру</option>
+                            {# <option value="paypal">PayPal</option>#}
+                        </select>
+                    </div>
+
+                    <div class="block">
+                        <p class="">Сумма: {{ total_sum }}</p>
+                    </div>
+
+                    <input class="btn__order" type="submit" value="Оформить">
+                </form>
+            </div>
+            {% for product in products %}
+                {{ product }}
+                <br>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        // Валидация формы перед отправкой
+        document.getElementById("order-form").addEventListener("submit", function(event) {
+          var nameInput = document.getElementById("name");
+          var emailInput = document.getElementById("email");
+          var addressInput = document.getElementById("address");
+
+          // Проверка полей на заполненность
+          if (!nameInput.value || !emailInput.value || !addressInput.value) {
+            event.preventDefault(); // Отмена отправки формы
+            alert("Пожалуйста, заполните все поля");
+          }
+        });
+  </script>
+{% endblock %}

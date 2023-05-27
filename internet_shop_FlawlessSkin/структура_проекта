@@ -8,6 +8,7 @@
 │   ├── __init__.py
 │   ├── admin.py
 │   ├── apps.py
+│   ├── forms.py
 │   ├── models.py
 │   ├── tests.py
 │   ├── urls.py
@@ -15,8 +16,22 @@
 │   ├── static
 │	│	└── main
 │   │    	├── css
+│   │    	│   ├── base.css
+│   │    	│   ├── card_detail.css
+│   │    	│   ├── card_preview.css
+│   │    	│   ├── cart.css
+│   │    	│   ├── catalog.css
+│   │    	│   ├── favourites.css
+│   │    	│   ├── index.css
+│   │    	│   ├── make_order.css
+│   │    	│   └── search_page.html
+│   │    	│
 │   │    	├── img
+│   │    	│   └── ...
+│   │    	│
 │   │    	└── js
+│   │    	    └── main.js
+│   │
 │   ├── templates
 │	│	└── main
 │   │    	├── base.html
@@ -25,8 +40,18 @@
 │   │    	├── catalog.html
 │   │    	├── favourites.html
 │   │    	└── index.html
+│   │
+│   ├── fixtures
+│	│	├── brands.json
+│	│	├── carts.json
+│	│	├── categories.json
+│	│	├── favourites.json
+│	│	├── orders.json
+│	│	└── products.json
+│	│
 │   └── migrations
-│           └── ...
+│       └── ...
+│
 ├── users
 │   ├── __init__.py
 │   ├── admin.py
@@ -39,21 +64,31 @@
 │   ├── static
 │	│	└── users
 │   │    	├── css
+│   │    	│   ├── base.css
+│   │    	│   ├── login.css
+│   │    	│   ├── profile.css
+│   │    	│   └── registration.html
+│   │    	│
 │   │    	└── img
+│   │			└── ...
+│   │
 │   ├── templates
 │	│	└── users
 │   │    	├── base.html
 │   │    	├── login.html
 │   │    	├── profile.html
 │   │    	└── registration.html
+│   │
 │   └── migrations
-│           └── ...
+│		└── ...
+│
 ├── media
 │   └── uploads
 │       └── products
-│           ├── ...
+│           ├── products
+│           │   └── ...
+│           │
 │        	└── default_image.png
-├── venv
-│   └── ...
+│
 ├── manage.py
 └── ...

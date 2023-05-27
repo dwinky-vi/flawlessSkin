@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Product
-from main.models import ProductCategory, ProductBrand, Cart, Favourites
+from main.models import ProductCategory, ProductBrand, Cart, Favourites, Order
 
 # этот файл отвечает за регистрацию таблиц
 # Чтобы таблица отображалась в админке
@@ -9,6 +9,7 @@ admin.site.register(ProductCategory)
 admin.site.register(ProductBrand)
 admin.site.register(Cart)
 admin.site.register(Favourites)
+admin.site.register(Order)
 
 
 class ProductAdmin(admin.ModelAdmin):

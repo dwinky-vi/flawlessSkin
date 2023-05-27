@@ -68,6 +68,7 @@ class Product(models.Model):
 	time_update = models.DateTimeField(auto_now=True)
 	quantity = models.PositiveIntegerField("Количество штук", default=0)
 	category = models.ForeignKey(to=ProductCategory, on_delete=models.PROTECT, default=1)
+	# related_products = models.ManyToManyField('self', blank=True, symmetrical=False)
 	#     есть 3 вида удаления:
 	#     CASCADE (при удаление одной категории, удалятся все товары, которые принадлежат данной категории)
 	#     PROTECT (нельзя будет удалить категорию, пока есть товары принадлежащие данной категории)
@@ -148,3 +149,23 @@ class Cart(models.Model):
 	# objects = CartQuerySet.as_manager()
 
 
+class Order(models.Model):
+	first_name = models.CharField("Имя", max_length=100, default="-")
+	last_name = models.CharField("Фамилия", max_length=100, default="-")
+	phone = models.CharField("Номер телефона", max_length=20, blank=True, null=True)
+	email = models.EmailField("Email", blank=True)
+	address = models.CharField("Адрес доставки", max_length=255, blank=True, null=True)
+	sum = models.PositiveIntegerField("Сумма заказа", null=False)
+	user = models.ForeignKey(verbose_name="Пользователь", to=User, on_delete=models.PROTECT, null=True)
+	products = models.ManyToManyField('Product')
+	created_timestamp = models.DateTimeField(auto_now_add=True)
+	
+	def __str__(self):
+		return f"Order #{self.pk} - {self.first_name}"
+	
+	class Meta:
+		verbose_name = "Заказ"
+		verbose_name_plural = "Заказы"
+
+
+# Устанавливаем параметр blank=True, чтобы поле было необязательным и могло быть пустым.

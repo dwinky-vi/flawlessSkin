@@ -2,19 +2,30 @@
 {% load static %}
 {% load humanize %} <!-- {# для отображения цены красиво (10 000)#} -->
 
+{% block title %}Корзина{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'main/css/cart.css' %}">
 {% endblock %}
 
 {% block content %}
-     <div class="title__wrapper">
-        <div class="container">
-            <div class="title">
-                <h1 class="title">Корзина</h1>
+    {% if carts %}
+         <div class="title__wrapper">
+            <div class="container">
+                <div class="title">
+                    <h1 class="title">Корзина</h1>
+                </div>
             </div>
         </div>
-    </div>
-
+    {% else %}
+        <div class="title__wrapper">
+            <div class="container">
+                <div class="title">
+                    <h1 class="title">Ваша корзина пуста</h1>
+                </div>
+            </div>
+        </div>
+    {% endif %}
     <div class="cart">
         <div class="container">
             {% if carts %}
@@ -24,7 +35,7 @@
                         <th>Фото</th>
                         <th>Название</th>
                         <th>Цена</th>
-                        <th>Количество, штук</th>
+                        <th>Кол-во, штук</th>
                         <th>Сумма</th>
                         <th>Удалить</th>
                     </tr>
@@ -38,7 +49,6 @@
                             <td><input data-price="{{ cart.product.price }}" type="number" name="quantity" min="1" value="{{ cart.quantity }}" data-cart-id="{{ cart.id }}"></td>
                             <td style="min-width: 100px"><span class="cart_sum_price">{{ cart.sum_price }}</span> руб.</td>
                             <td><a href="{% url 'products:delete_for_cart' cart.id %}" class="cart__delete">удалить <i class="fa fa-trash"></i></a></td>
-    {#                      <button type="button" data-cart-id="{{ cart.id }}" class="cart__delete">Удалить</button>#}
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -51,10 +61,13 @@
                     <div class="cart__total">
                         <span>Итого: </span><span id="total_sum"> {{ carts.0.total_amount|intcomma }}</span> руб.
                     </div>
-                    <a href="" class="cart__to__order">Оформить заказ</a>
+                    <a href="{% url 'products:make_order' %}" class="cart__to__order">Оформить заказ</a>
                 </div>
             {% else %}
-                <p class="cart__empty">Корзина пустая</p>
+                <div class="cart__empty">
+                    <p class="text">Перейдите в <a href="{% url 'products:catalog' %}">каталог</a> или на <a href="{% url 'products:index' %}">главную страницу</a></p>
+                    <a class="btn" href="{% url 'products:catalog' %}">Перейти в каталог</a>
+                </div>
             {% endif %}
         </div>
     </div>

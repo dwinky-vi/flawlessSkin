@@ -1,8 +1,9 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% load humanize %} <!-- {# для отображения цены красиво (10 000)#} -->
-{% load thumbnail %} {# зачем?????
+{% load thumbnail %} {# зачем????? #}
 
+{% block title %}{{ product.title }}{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'main/css/card_detail.css' %}">

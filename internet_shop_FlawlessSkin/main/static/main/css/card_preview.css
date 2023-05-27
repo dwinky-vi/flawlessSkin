@@ -115,54 +115,6 @@
   color: #CCCCCC;
 }
 
-/*.add__to__cart {*/
-/*  display: block;*/
-/*  !*width: 100%;*!*/
-/*  font-weight: 400;*/
-/*  font-size: 17px;*/
-/*  color: #70c05b;*/
-/*  padding: 10px;*/
-/*  text-decoration: none;*/
-/*  text-align: center;*/
-/*  border: 1px solid #70c05b;*/
-/*  border-radius: 4px;*/
-/*  cursor: pointer; !* Меняем курсор при наведении *!*/
-/*  transition: 0.2s;*/
-/*  margin-top: auto; !* Прижимаем кнопку к низу карточки *!*/
-/*  background: inherit;*/
-/*}*/
-
-/*.add__to__cart:hover {*/
-/*  border: 1px solid #ff6633;*/
-/*  background-color: #ff6633;*/
-/*  color: #fff;*/
-/*}*/
-
-/*.add__to__favourites {*/
-/*  display: block;*/
-/*  !*width: 100%;*!*/
-/*  font-weight: 400;*/
-/*  font-size: 17px;*/
-/*  color: #70c05b;*/
-/*  padding: 10px;*/
-/*  text-decoration: none;*/
-/*  text-align: center;*/
-/*  border: 1px solid #70c05b;*/
-/*  border-radius: 4px;*/
-/*  cursor: pointer; !* Меняем курсор при наведении *!*/
-/*  transition: 0.2s;*/
-/*  !*margin-top: auto; !* Прижимаем кнопку к низу карточки *!*!*/
-/*  background: inherit;*/
-/*}*/
-
-
-
-
-
-
-
-
-
 .actions {
   /*border: 1px solid red;*/
   max-width: 100%;
@@ -206,28 +158,9 @@
   border-radius: 4px;
   cursor: pointer;
   transition: 0.2s;
-  /*overflow: hidden; !* Прячем всё за пределами *!*/
-  /*object-fit: cover; /*/
-  /*background: inherit;*/
-  /*background-image: url("../img/like.png");*/
-  /*background-position: center;*/
-  /*background-repeat: no-repeat;*/
-  /*background-size: cover; !* чтобы занимала  всю площадь экрнана*!*/
-
 }
 
-.add__to__favourites > img {
-  /*width: 80%;*/
-  /*height: 80%;*/
-  /*width: 100%; !* Ширина изображений *!*/
-  /*height: 100%; !* Высота изображении *!*/
-  /*object-fit: contain; !* Встраиваем картинку в контейнер add__to__favourites *!*/
-  transition: transform 0.2s linear;
-}
-
-.add__to__favourites:hover > img {
-  /*width: 60%;*/
-  /*height: 60%;*/
+.add__to__favourites:hover > i {
   object-fit: contain; /* Встраиваем картинку в контейнер add__to__favourites */
   transform: scale(1.1);
 }

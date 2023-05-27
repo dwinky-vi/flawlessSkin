@@ -2,6 +2,8 @@
 {% load static %}
 {% load humanize %} <!-- {# для отображения цены красиво (10 000)#} -->
 
+{% block title %}Избранное{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'main/css/card_preview.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/favourites.css' %}">
@@ -37,9 +39,12 @@
                                 <a class="add__to__cart" href="{% url 'products:add_to_cart' item.product.id %}">
                                     в корзину
                                 </a>
-                                <a href="{% url 'products:remove_from_favourites' item.id %}">
+                                {# здесь корзина удалялась именно по id корзины, а не по id продукта #}
+                                {# <a href="{% url 'products:remove_from_favourites' item.id %}">#}
+
+                                {# здесь по id продукта и user'а ищется корзина и удаляется #}
+                                <a class="add__to__favourites" href="{% url 'products:remove_from_favourites' item.product.id %}">
                                     <i class="fa-regular fa-trash fa-xl" style="color: #e62d2d;"></i>
-{#                                    удалить#}
                                 </a>
                             </div>
                         </div>
@@ -48,9 +53,6 @@
                 <h3>Здесь пока ничего нет</h3>
                 {% endfor %}
             </div>
-
-
         </div>
     </div>
-
 {% endblock %}

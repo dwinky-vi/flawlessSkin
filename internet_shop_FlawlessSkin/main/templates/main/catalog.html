@@ -2,6 +2,7 @@
 {% load static %}
 {% load humanize %} <!-- {# для отображения цены красиво (10 000)#} -->
 
+{% block title %}Каталог{% endblock %}
 
 {% block css %}
 	<link rel="stylesheet" href="{% static 'main/css/card_preview.css' %}">
@@ -42,14 +43,23 @@
                                 <a class="add__to__cart" href="{% url 'products:add_to_cart' product.id %}">
                                     в корзину
                                 </a>
-                                <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">
-{#                                    <img src="{% static 'main/img/red_like.png' %}">#}
-                                    {% if product in favourites_products_list %}
+{#                                <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">#}
+{#                                    {% if product in favourites_products_list %}#}
+{#                                        <i class="fa-solid fa-heart fa-2xl" style="color: #d64c4c;"></i>#}
+{#                                    {% else %}#}
+{#                                        <i class="fa-regular fa-heart fa-2xl" style="color: #d64c4c;"></i>#}
+{#                                    {% endif %}#}
+{#                                </a>#}
+
+                                {% if product in favourites_products_list %}
+                                     <a class="add__to__favourites" href="{% url 'products:remove_from_favourites' product.id %}">
                                         <i class="fa-solid fa-heart fa-2xl" style="color: #d64c4c;"></i>
-                                    {% else %}
+                                    </a>
+                                {% else %}
+                                    <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">
                                         <i class="fa-regular fa-heart fa-2xl" style="color: #d64c4c;"></i>
-                                    {% endif %}
-                                </a>
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -66,11 +76,9 @@
                     {% if paginator.num_pages > 1 %}
                         {% if page_obj.has_previous %}
                             <li><a href="?page={{ page_obj.previous_page_number }}">&larr;</a></li>
-{#                            <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>#}
                         {% endif %}
                         {% for page in paginator.page_range %}
                             {% if page_obj.number == page %}
-{#                                {{ page }}#}
                                 <li class="disabled">{{ page }}</li>
                             {% elif page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
                                 <li><a href="?page={{ page }}">{{ page }}</a></li>
@@ -78,11 +86,18 @@
                         {% endfor %}
                         {% if page_obj.has_next %}
                             <li><a href="?page={{ page_obj.next_page_number }}">&rarr;</a></li>
-{#                            <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>#}
                         {% endif %}
                     {% endif %}
                 </ul>
             </div>
         </div>
     </div>
+    <script>
+    let likeIcons = document.querySelectorAll(".add__to__favourites")
+
+    for (let k = 0; k < likeIcons.length; k++) {
+        likeIcons[k]
+    }
+
+    </script>
 {% endblock %}
