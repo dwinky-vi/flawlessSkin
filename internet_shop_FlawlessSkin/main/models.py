@@ -53,7 +53,7 @@ class Product(models.Model):
 	)
 	# unique = True,
 	title = models.CharField("Название товара", max_length=255, default="")
-	slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+	slug = models.SlugField(verbose_name="URL", max_length=255, unique=True, db_index=True)
 	image = models.ImageField("Фото товара", upload_to="uploads/products/", default="uploads/default_image_1.png",
 							  max_length=255)
 	description = models.TextField("Описание", help_text="Укажите подробное описание товара")
@@ -168,4 +168,5 @@ class Order(models.Model):
 		verbose_name_plural = "Заказы"
 
 
-# Устанавливаем параметр blank=True, чтобы поле было необязательным и могло быть пустым.
+# параметр blank=True означает, что поле модет быть пустым
+

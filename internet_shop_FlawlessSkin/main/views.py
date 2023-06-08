@@ -17,8 +17,11 @@ def index(request):
 	products_sort = Product.objects.order_by('-date')[:8]
 	categories = ProductCategory.objects.all()
 	favourites_products_list = list()
-	for item in Favourites.objects.filter(user=request.user):
-		favourites_products_list.append(item.product)
+	if request.user.is_authenticated:
+		for item in Favourites.objects.filter(user=request.user):
+			favourites_products_list.append(item.product)
+	else:
+		pass
 	# context == content == data
 	context = {
 		"products": products_sort,
@@ -193,8 +196,8 @@ def make_order(request):
 	# request.session.flush()
 	try:
 		user = request.user
-		# if not user.is_authenticated():
-		# 	print("ПОЛЬЗОВАТЕЛЬ НЕ АВТОРИЗОВАН")
+		if not user.is_authenticated:
+			print("ПОЛЬЗОВАТЕЛЬ НЕ АВТОРИЗОВАН")
 	except ObjectDoesNotExist:
 		print("Пользователь не найден.")
 		return redirect('products:cart')
@@ -202,10 +205,7 @@ def make_order(request):
 		print(f"Произошла ошибка: {str(e)}")
 		return redirect('products:cart')
 
-	
-
 	if "order" in request.session:
-		print(f"session is active")
 		total_sum = request.session.get("total_sum")
 		products_id = request.session.get("products_id")
 		products = list()
@@ -219,12 +219,12 @@ def make_order(request):
 			carts = carts | Cart.objects.filter(id=cart_id)
 	else:
 		request.session["order"] = True
-		
+
 		carts = Cart.objects.filter(user=user)
 		if carts.count() == 0:
 			print(f"Корзина пуста.")
 			return redirect('products:cart')
-		
+
 		total_sum = carts.first().total_amount()
 		request.session["total_sum"] = total_sum
 		products = [cart.product for cart in carts]
@@ -239,6 +239,8 @@ def make_order(request):
 		request.session['carts_id'] = carts_id
 		print(f"session no active")
 
+	# перенести сохранения ссесии в не POST запрос
+	# если пользователь не закончит оформление заказа и начнет новую -- будет ошибка
 	if request.method == 'POST':
 		form = OrderForm(data=request.POST)
 		if form.is_valid():
@@ -258,7 +260,6 @@ def make_order(request):
 			del request.session['carts_id']
 			return redirect('products:cart')
 	else:
-		
 		initial_data = {
 			"first_name": user.first_name,
 			"last_name": user.last_name,

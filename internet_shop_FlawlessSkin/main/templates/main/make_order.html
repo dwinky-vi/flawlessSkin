@@ -72,18 +72,18 @@
                     <input class="btn__order" type="submit" value="Оформить">
                 </form>
             </div>
-            {% for product in products %}
-                {{ product }}
-                <br>
-            {% endfor %}
+{#            {% for product in products %}#}
+{#                {{ product }}#}
+{#                <br>#}
+{#            {% endfor %}#}
         </div>
     </div>
     <script>
         // Валидация формы перед отправкой
         document.getElementById("order-form").addEventListener("submit", function(event) {
-          var nameInput = document.getElementById("name");
-          var emailInput = document.getElementById("email");
-          var addressInput = document.getElementById("address");
+          let nameInput = document.getElementById("name");
+          let emailInput = document.getElementById("email");
+          let addressInput = document.getElementById("address");
 
           // Проверка полей на заполненность
           if (!nameInput.value || !emailInput.value || !addressInput.value) {
