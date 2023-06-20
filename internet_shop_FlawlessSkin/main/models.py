@@ -170,3 +170,14 @@ class Order(models.Model):
 
 # параметр blank=True означает, что поле модет быть пустым
 
+class Contact(models.Model):
+	""" подписка на email-рассылку """
+	email = models.EmailField("Email", blank=False)
+	created_timestamp = models.DateTimeField("Date", auto_now_add=True)
+
+	def __str__(self):
+		return self.email
+
+	class Meta:
+		verbose_name = "Контакт"
+		verbose_name_plural = "email-рассылка"

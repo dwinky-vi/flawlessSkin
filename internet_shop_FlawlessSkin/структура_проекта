@@ -92,3 +92,28 @@
 │
 ├── manage.py
 └── ...
+
+
+
+├── internet_shopFlawlessSkin
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── main
+│   └── ...
+│
+├── users
+│	└── ...
+│
+├── media
+│   └── uploads
+│       └── products
+│           ├── products
+│           │   └── ...
+│           │
+│        	└── default_image.png
+│
+├── manage.py
+└── ...

@@ -156,13 +156,17 @@ body {
 	line-height: 1.4;
 }
 
+	/* Блок с товарами */
+.card__title, .card__preview, .card__prices, .card__price::after  {
+  color: white;
+}
 
-
-
+.card__title:hover {
+    color: #CCCCCC;
+}
 
 
 /* Адаптив */
-
 @media (max-width: 1300px) {
 	.header {
 		padding-top: 10px;

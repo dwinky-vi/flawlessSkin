@@ -4,7 +4,8 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'main/css/search_page.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/card_preview.css' %}">
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">#}
 {% endblock %}
 
 {% block content %}
@@ -16,5 +17,105 @@
         </div>
     </div>
 
+    <div>
+        <div class="container">
+             <div class="search__string">
+                <input id="search_string" type="text" class="search_string" placeholder="Введите запрос">
+{#                <a id="search_btn" class="search_btn" href="{% url 'products:to_find' %}">найти</a>#}
+                <button id="search_btn" class="search_btn">найти</button>
+            </div>
+
+            <div class="card__holder" id="search__results">
+                {% for product in products_from_search %}
+                    <div class="card__preview">
+                        <div class="card__top">
+                            <a href="{% url 'products:card_detail' product.slug %}" class="card__image">
+                              <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'uploads/default_image_2.png' %}{% endif %}" alt="{{ product.title }}"/>
+                            </a>
+                        </div>
+                        <div class="card__bottom">
+                            <div class="card__prices">
+                              <div class="card__price">{{ product.price|intcomma }}</div>
+                            </div>
+                            <a href="{{ product.get_absolute_url }}" class="card__title">{{ product.title }}</a>
+                            <div class="actions">
+                                {% if product in products_in_cart %}
+                                    <a class="in__cart" href="{% url 'products:delete_from_cart' product.id %}">в корзине</a>
+                                {% else %}
+                                    <a class="add__to__cart" href="{% url 'products:add_to_cart' product.id %}">в корзину</a>
+                                {% endif %}
+                                {% if product in favourites_products %}
+                                    <a class="add__to__favourites" href="{% url 'products:remove_from_favourites' product.id %}">
+                                        <i class="fa-solid fa-heart fa-2xl" style="color: #d64c4c;"></i>
+                                    </a>
+                                {% else %}
+                                    <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">
+                                        <i class="fa-regular fa-heart fa-2xl" style="color: #d64c4c;"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <h3>пусто</h3>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+    let BtnSearch = document.getElementById('search_btn')
+    let SearchString = document.getElementById('search_string')
+
+    BtnSearch.addEventListener('click', function () {
+        if (SearchString.value !== '') {
+            {#alert(SearchString.value);#}
+            $.ajax({
+                type: "GET",
+                url: "{% url 'products:search_processing_by_ajax' %}",
+                data: {
+                    "search_string": SearchString.value
+                },
+                dataType: 'json',
+                success: function (response) {
+                    // Очистка текущего контента на странице
+                    $('.card__holder').empty();
+
+                    // Перебор полученных продуктов
+                    $.each(response, function(index, product) {
+                        // Создание HTML-элемента для отображения продукта
+                        var productElement = '<div class="card__preview">' +
+                                    '<div class="card__top">' +
+                                        '<a href="/products/' + product.slug + '" class="card__image">' +
+                                            '<img src="' + product.image + '" alt="' + product.title + '" />' +
+                                        '</a>' +
+                                    '</div>' +
+                                    '<div class="card__bottom">' +
+                                        '<div class="card__prices">' +
+                                            '<div class="card__price">' + product.price + '</div>' +
+                                        '</div>' +
+                                        '<a href="/products/' + product.slug + '" class="card__title">' + product.title + '</a>' +
+                                    '</div>' +
+                                '</div>';
+
+                        // Добавление продукта на страницу
+                        $('.card__holder').append(productElement);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                    alert(error);
+                }
+            });
+        }
+    })
+
+    function updateData(data) {
+        let searchResults = $("#search__results");
+        // Очистка текущего содержимого
+        searchResults.empty();
+        alert(data);
+    }
+    </script>
 {% endblock %}
-send_mail('Django mail', 'This e-mail was sent with Django.', 'birgita3244444@gmail.com', ['birgita3244444@gmail.com'], fail_silently=False)
+{#send_mail('Django mail', 'This e-mail was sent with Django.', 'birgita3244444@gmail.com', ['birgita3244444@gmail.com'], fail_silently=False)#}

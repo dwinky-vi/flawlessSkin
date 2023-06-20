@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Product
-from main.models import ProductCategory, ProductBrand, Cart, Favourites, Order
+from main.models import ProductCategory, ProductBrand, Cart, Favourites, Order, Contact
 
 # этот файл отвечает за регистрацию таблиц
 # Чтобы таблица отображалась в админке
@@ -11,12 +11,14 @@ admin.site.register(Cart)
 admin.site.register(Favourites)
 admin.site.register(Order)
 
-
 class ProductAdmin(admin.ModelAdmin):
 	# search_fields = ("title", )
 	prepopulated_fields = {"slug": ("title",)}  # автоматически заполнять поле slug на основе поля title
-	
-
 
 admin.site.register(Product, ProductAdmin)
 # admin.site.register(ProductAdmin)
+
+# admin.site.register(Contact)
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+	list_display = ("email", "created_timestamp")

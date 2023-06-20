@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="{% static 'main/css/base.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Подключаем стили -->
     {% block css %}
 	{% endblock %}
@@ -18,6 +19,9 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Подключаем js jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head>
 <body>
     <header id="header" class="header">
@@ -33,8 +37,10 @@
                     <a class="nav__link" href="{% url 'products:cart' %}">Корзина</a>
                     {% if user.is_authenticated %}
                         <div class="dropdown">
-                            <a class="dropdown__img" href="{% url 'users:profile' %}">
-                                <img src="{% static 'main/img/profile_icon_2.png' %}">
+                            <a class="dropdown__icon" href="{% url 'users:profile' %}">
+{#                                <img src="{% static 'main/img/profile_icon_2.png' %}">#}
+{#                                <i class="fa fa-user" aria-hidden="true"></i>#}
+                                <i class="fa-solid fa-circle-user fa-xl"></i>
                             </a>
                             <div class="dropdown__content">
                                 <a class="dropdown__link" href="{% url 'users:profile' %}">Профиль</a>
@@ -50,7 +56,7 @@
                     <button id="burger__btn">
                         <img src="{% static 'main/img/menu.png' %}" alt="меню">
                     </button>
-                    <div id="menu" class="burger__slide disp">
+                    <div id="menu" class="burger__slide">
                         <a class="nav__link block" href="{% url 'products:search' %}">Поиск</a>
                         <a class="nav__link block" href="{% url 'products:catalog' %}">Каталог</a>
                         <a class="nav__link block" href="{% url 'products:favourites' %}">Избранное</a>
@@ -89,18 +95,51 @@
                 <div class="footer__section">
                     <h4 class="footer__section__title">Подписка на рассылку</h4>
                     <p>Подпишитесь, чтобы получать уведомления о новинках, распродажах и акциях</p>
-                    <form>
+{#                    <form action="#" method="post">#}
+{#                        {% csrf_token %}#}
                         <div class="input__email__wrapper">
-                            <input type="email" class="input__email" placeholder="Введите email">
+                            <input id="input__subscribe" type="email" class="input__email" placeholder="Введите email">
                         </div>
-                        <button type="submit" class="btn__subscribe">Подписаться</button>
-                    </form>
+                        <button id="btn__subscribe" type="submit" class="btn__subscribe">Подписаться</button>
+{#                    </form>#}
                 </div>
             </div>
         </div>
         <div class="footer__bottom">
-            <p>© 2023 MyCosmetics. Все права защищены.</p>
+            <p>© 2023 FlawlessSkin. Все права защищены.</p>
         </div>
     </footer>
+<script>
+    let BtnSubscribe = document.getElementById('btn__subscribe');
+    let InputSubscription = document.getElementById('input__subscribe');
+
+    BtnSubscribe.addEventListener('click', function() {
+        if (!InputSubscription.value) {
+            alert("Пожалуйста, введите email адресс");
+          }
+        else {
+            $.ajax({
+                type: "GET", // Метод запроса
+                url: "{% url 'products:subscribe' %}", // url запроса
+                data: {      // Параметры для запроса
+                    {#'X-CSRFToken': csrftoken#}
+                    'email': InputSubscription.value
+                },
+                success: function (response) { // Код который выполнится  для удачного запроса
+                    if (response.error) {
+                        alert(response.error);
+                    } else {
+                        alert("Вы успешно подписались на рассылку");
+                    }
+                },
+                error: function (response) { // Код который выполнится  при ошибке запроса
+                    console.log("error 23");
+                    alert("Что-то пошло не так");
+                }
+            });
+            InputSubscription.value = "";
+        }
+    })
+</script>
 </body>
 </html>

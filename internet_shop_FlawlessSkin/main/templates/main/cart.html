@@ -32,8 +32,7 @@
                 <table class="cart__table">
                     <thead>
                     <tr>
-                        <th>Фото</th>
-                        <th>Название</th>
+                        <th colspan="2">Наименование</th>
                         <th>Цена</th>
                         <th>Кол-во, штук</th>
                         <th>Сумма</th>
@@ -48,7 +47,7 @@
                             <td>{{ cart.product.price|intcomma }} руб.</td>
                             <td><input data-price="{{ cart.product.price }}" type="number" name="quantity" min="1" value="{{ cart.quantity }}" data-cart-id="{{ cart.id }}"></td>
                             <td style="min-width: 100px"><span class="cart_sum_price">{{ cart.sum_price }}</span> руб.</td>
-                            <td><a href="{% url 'products:delete_for_cart' cart.id %}" class="cart__delete">удалить <i class="fa fa-trash"></i></a></td>
+                            <td><a href="{% url 'products:delete_from_cart' cart.product.id %}" class="cart__delete">удалить {# <i class="fa fa-trash"></i>  #}</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

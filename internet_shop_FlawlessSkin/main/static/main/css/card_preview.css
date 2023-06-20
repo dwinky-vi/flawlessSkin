@@ -1,19 +1,19 @@
 .cards {
-  margin-bottom: 60px;
+	margin-bottom: 60px;
 }
 
 .card__holder {
-  display: grid;
-  /* Автоматически заполняем на всю ширину grid-контейнера */
-  grid-template-columns: repeat(4, 225px);
-  width: 100%;
-  max-width: 1000px; /* Ширина grid-контейнера */
-  justify-content: start;
-  justify-items: center; /* Размещаем карточку по центру */
-  column-gap: 30px; /* Отступ между колонками */
-  row-gap: 45px; /* Отступ между рядами */
-  margin: 0 auto;
-  margin-bottom: 20px;
+	display: grid;
+	/* Автоматически заполняем на всю ширину grid-контейнера */
+	grid-template-columns: repeat(4, 225px);
+	width: 100%;
+	max-width: 1000px; /* Ширина grid-контейнера */
+	justify-content: start;
+	justify-items: center; /* Размещаем карточку по центру */
+	column-gap: 30px; /* Отступ между колонками */
+	row-gap: 45px; /* Отступ между рядами */
+	margin: 0 auto;
+	margin-bottom: 20px;
 }
 
 .cards__title {
@@ -25,15 +25,16 @@
 }
 
 .card__preview {
-  color: white;
-  width: 225px;
-  min-height: 350px;
-  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column; /* Размещаем элементы в колонку */
-  border-radius: 4px;
-  transition: 0.2s;
-  position: relative;
+	/*color: white; для главной страницы */
+	color: black;
+	width: 225px;
+	min-height: 350px;
+	box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column; /* Размещаем элементы в колонку */
+	border-radius: 4px;
+	transition: 0.2s;
+	position: relative;
 }
 
 /*.card__preview:nth-child(n + 3) {*/
@@ -41,126 +42,147 @@
 /*}*/
 
 .card__top {
-  border-radius: 12px;
-  flex: 0 0 220px; /* Задаем высоту 220px, запрещаем расширение и сужение по высоте */
-  position: relative;
-  overflow: hidden; /* Скрываем, что выходит за пределы */
-  background-color: white;
-  padding: 10px;
+	border-radius: 12px;
+	flex: 0 0 220px; /* Задаем высоту 220px, запрещаем расширение и сужение по высоте */
+	position: relative;
+	overflow: hidden; /* Скрываем, что выходит за пределы */
+	background-color: white;
+	padding: 10px;
 }
 
 /* Контейнер для картинки */
 .card__image {
-  border-radius: 12px;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+	border-radius: 12px;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 
 .card__image > img {
-  border-radius: 30px;
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Встраиваем картинку в контейнер card__image */
-  transition: 0.2s;
+	border-radius: 30px;
+	width: 100%;
+	height: 100%;
+	object-fit: contain; /* Встраиваем картинку в контейнер card__image */
+	transition: 0.2s;
 }
 
- /*При наведении - увеличиваем картинку */
+/*При наведении - увеличиваем картинку */
 .card__image:hover > img {
-  border-radius: 12px;
-  transform: scale(1.15);
+	border-radius: 12px;
+	transform: scale(1.15);
 }
 
 .card__bottom {
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto; /* Занимаем всю оставшуюся высоту карточки */
-  padding: 10px;
+	display: flex;
+	flex-direction: column;
+	flex: 1 0 auto; /* Занимаем всю оставшуюся высоту карточки */
+	padding: 10px;
 }
 
 .card__prices {
-  margin-bottom: 10px;
-  color: white;
+	margin-bottom: 10px;
+	/*color: white; для главной страницы */
+	color: black;
 }
 
 .card__price {
-  font-weight: 700;
-  font-size: 19px;
-  display: flex;
-  flex-wrap: wrap-reverse;
+	font-weight: 700;
+	font-size: 19px;
+	display: flex;
+	flex-wrap: wrap-reverse;
 }
 
 .card__price::after {
-  color: white;
-  content: "₽";
-  margin-left: 4px;
-  position: relative;
+	/*color: white; для главной страницы */
+	color: black;
+	content: "₽";
+	margin-left: 4px;
+	position: relative;
 }
 
 .card__title {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 150%;
-  color: white;
-  text-decoration: none;
+	display: block;
+	margin-bottom: 10px;
+	font-weight: 400;
+	font-size: 17px;
+	line-height: 150%;
+	/*color: white; для главной страницы */
+	color: black;
+	text-decoration: none;
 }
 
 .card__title:hover {
-  text-decoration: underline;
-  color: #CCCCCC;
+	text-decoration: underline;
+	/*color: #CCCCCC; для главной страницы */
+	color: #619d88;
 }
 
 .actions {
-  /*border: 1px solid red;*/
-  max-width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto; /* Прижимаем кнопку к низу карточки */
+	/*border: 1px solid red;*/
+	max-width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: auto; /* Прижимаем кнопку к низу карточки */
 }
 
 .add__to__cart {
-  display: block;
-  width: 65%;
-  font-weight: 500;
-  font-size: 19px;
-  color: #70c05b;
-  padding: 10px;
-  text-decoration: none;
-  text-align: center;
-  border: 1px solid #70c05b;
-  border-radius: 5px;
-  cursor: pointer; /* Меняем курсор при наведении */
-  transition: 0.2s;
-  background: inherit;
-  margin-right: 10px;
+	display: block;
+	width: 65%;
+	font-weight: 500;
+	font-size: 19px;
+	color: #70c05b;
+	padding: 10px;
+	text-decoration: none;
+	text-align: center;
+	border: 1px solid #70c05b;
+	border-radius: 5px;
+	cursor: pointer; /* Меняем курсор при наведении */
+	transition: 0.2s;
+	background: inherit;
+	margin-right: 10px;
 }
 
 .add__to__cart:hover {
-  border: 1px solid #ff6633;
-  background-color: #ff6633;
-  color: #fff;
+	border: 1px solid #ff6633;
+	background-color: #ff6633;
+	color: #fff;
+}
+
+.in__cart {
+	display: block;
+	width: 65%;
+	font-weight: 500;
+	font-size: 19px;
+	color: #fff;
+	background: #70c05b;
+	padding: 10px;
+	text-decoration: none;
+	text-align: center;
+	border: 1px solid #70c05b;
+	border-radius: 5px;
+	cursor: pointer; /* Меняем курсор при наведении */
+	transition: 0.2s;
+	margin-right: 10px;
 }
 
 .add__to__favourites {
-  /*border: 1px solid black;*/
-  scroll-snap-align: center;
-  max-width: 30%;
-  /*padding: 10px;*/
-  text-decoration: none;
-  text-align: center;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: 0.2s;
+	/*border: 1px solid black;*/
+	scroll-snap-align: center;
+	max-width: 30%;
+	/*padding: 10px;*/
+	text-decoration: none;
+	text-align: center;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: 0.2s;
 }
 
 .add__to__favourites:hover > i {
-  object-fit: contain; /* Встраиваем картинку в контейнер add__to__favourites */
-  transform: scale(1.1);
+	object-fit: contain; /* Встраиваем картинку в контейнер add__to__favourites */
+	transform: scale(1.1);
 }

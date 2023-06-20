@@ -17,13 +17,13 @@
     color: black;
 }
 
-.card__title, .card__preview, .card__prices, .card__price::after  {
-  color: black;
-}
+/*.card__title, .card__preview, .card__prices, .card__price::after  {*/
+/*  color: black;*/
+/*}*/
 
-.card__title:hover {
-    color: #619d88;
-}
+/*.card__title:hover {*/
+/*    color: #619d88;*/
+/*}*/
 
     /* пагинация страницы */
 

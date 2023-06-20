@@ -16,3 +16,31 @@
     /*background: #FFB085;*/
     color: black;
 }
+
+.search_string {
+	margin-left: 60px;
+	margin-bottom: 20px;
+	height: 20px;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+	padding: 5px 10px;
+	font-size: 14px;
+}
+
+.search_btn {
+	margin-left: 10px;
+	display: inline-block;
+	height: 100%;
+	width: 60px;
+	color: white;
+	background-color: #55bb59;
+	border: 1px solid #ced4da;
+	border-radius: 3px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.search_btn:active {
+	color: white;
+	background-color: #3d8e40;
+}

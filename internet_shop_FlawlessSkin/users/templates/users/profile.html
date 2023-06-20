@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load humanize %} <!-- {# для отображения цены красиво (10 000)#} -->
 {% load static %}
 
 {% block title %}Профиль{% endblock %}
@@ -56,6 +57,24 @@
             </form>
         </div>
     </div>
+
+    <div class="profile__orders">
+        <div class="container">
+            <h2 class="title">История заказов</h2>
+            <ul class="orders__ul">
+                {% for order in orders %}
+                    <li>Заказ №{{ order.id }} от {{ order.created_timestamp|date:"d.m.Y в H:i" }} на сумму {{ order.sum|intcomma }} рублей
+                    <button>Посмотреть</button>
+                    </li>
+                {% empty %}
+                    <li>Вы пока ничего не заказывали</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+
+
 {#    {% if user.is_superuser or user.is_staff %}#}
 {#        <div class="container">#}
 {#            <div class="admin__panel">#}
@@ -93,9 +112,6 @@
                     labels[k].style.padding = '';
                 }
             });
-            {#if (inputs[k].value !== '') {#}
-            {#    labels[k].style.color = '#4CAF50';#}
-            {#}#}
             if (inputs[k].value !== '') {
                 labels[k].style.top = '0';
                 labels[k].style.fontSize = '12px';

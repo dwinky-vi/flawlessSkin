@@ -38,14 +38,12 @@
                     </dl>
                 </div>
                 <div class="actions">
-                    <a class="add__to__cart" href="{% url 'products:add_to_cart' product.id %}">
-                        Добавить в корзину
-                    </a>
-                        {% if is_favourite %}
-                            <a class="in__favourites" href="{% url 'products:add_to_favourites' product.id %}">В избранном</a>
-                        {% else %}
-                            <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">Добавить в избранное</a>
-                        {% endif %}
+                    <a class="add__to__cart" href="{% url 'products:add_to_cart' product.id %}">Добавить в корзину</a>
+                    {% if is_favourite %}
+                        <a class="in__favourites" href="{% url 'products:add_to_favourites' product.id %}">В избранном</a>
+                    {% else %}
+                        <a class="add__to__favourites" href="{% url 'products:add_to_favourites' product.id %}">Добавить в избранное</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

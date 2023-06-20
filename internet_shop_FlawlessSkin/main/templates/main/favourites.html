@@ -20,7 +20,6 @@
     </div>
 
     <div class="cards">
-
         <div class="container">
             <div class="card__holder">
                 {% for item in favourites %}
@@ -36,9 +35,11 @@
                             </div>
                             <a href="{% url 'products:card_detail' item.product.slug %}" class="card__title">{{ item.product.title }}</a>
                             <div class="actions">
-                                <a class="add__to__cart" href="{% url 'products:add_to_cart' item.product.id %}">
-                                    в корзину
-                                </a>
+                                {% if item.product in products_in_cart %}
+                                    <a class="in__cart" href="{% url 'products:delete_from_cart' item.product.id %}">в корзине</a>
+                                {% else %}
+                                    <a class="add__to__cart" href="{% url 'products:add_to_cart' item.product.id %}">в корзину</a>
+                                {% endif %}
                                 {# здесь корзина удалялась именно по id корзины, а не по id продукта #}
                                 {# <a href="{% url 'products:remove_from_favourites' item.id %}">#}
 
